@@ -1,0 +1,34 @@
+# ls alias
+type exa >/dev/null 2>&1 && alias ls="exa --icons --group-directories-first"
+if [[ $(uname -s) == "Linux" ]]; then
+	alias ls="ls --color"
+fi
+alias ll="ls -alF"
+
+alias mkdir="mkdir -p"			# mkdir parent directory if not exists
+alias ln="ln -v"						# ln always verbose
+alias cp="cp -i"						# confirm before overwriting something
+alias df="df -h"						# human readable sizes
+
+# previous directory
+alias -- -="cd -"
+
+# use neovim instead of vim
+type nvim >/dev/null 2>&1 && alias vim="nvim"
+
+# Pretty print the path
+alias path='echo $PATH | tr -s ":" "\n"'
+
+# source conda
+alias sa="conda activate"
+alias sd="conda deactivate"
+
+# GNU screen
+alias screen="TERM=xterm-256color; screen"
+alias screen_kill_all_detached="screen -ls | grep Detached | cut -d. -f1 | awk '{print $1}' | xargs kill"
+
+# tmux
+# alias tmux="TERM=xterm-256color; tmux"
+
+# Include custom aliases
+[[ -f ~/.aliases.local ]] && source ~/.aliases.local
