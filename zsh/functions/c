@@ -1,9 +1,0 @@
-# No arguments: `config status`
-# With arguments: acts like `config`
-c() {
-  if [[ $# -gt 0 ]]; then
-    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME "$@"
-  else
-    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME status
-  fi
-}
