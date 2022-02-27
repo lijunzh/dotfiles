@@ -38,12 +38,13 @@ M.plugins = {
    -- setup lsp servers
    options = {
       lspconfig = {
-         setup_lspconf = "custom.plugins.lspconfig",
+         setup_lspconf = "custom.plugins.configs.lspconfig",
       }
    },
 
    default_plugin_config_replace = {
       nvim_treesitter = require("custom.plugins.configs.treesitter").treesitter,
+      nvim_tree = require("custom.plugins.configs.others").nvimtree,
    },
 
    -- custom plugins

@@ -25,5 +25,10 @@ M.tabnine = function(override_flag)
    end
 end
 
+M.nvimtree = {
+   git = {
+      enable = true,
+   },
+}
 
 return M
