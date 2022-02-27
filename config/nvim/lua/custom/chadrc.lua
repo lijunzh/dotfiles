@@ -10,7 +10,6 @@ local user_plugins = require("custom.plugins")
 M.options = {
   -- custom options
 
-  ruler = true,
 }
 
 M.ui = {
