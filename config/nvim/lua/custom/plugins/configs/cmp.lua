@@ -1,5 +1,9 @@
 local M = {}
+local present, cmp = pcall(require, "cmp")
 
+if not present then
+    return M
+end
 local lspkind = require('lspkind')
 local source_mapping = {
    buffer = "[Buffer]",

@@ -1,5 +1,25 @@
 M = {}
 
+M.autosave = function(override_flag)
+    local present, autosave = pcall(require, "autosave")
+    if present then
+        local default = {
+            enabled = true,
+            execution_message = "autosaved at : " .. vim.fn.strftime("%H:%M:%S"),
+            events = {"FocusLost"},
+            conditions = {
+                exists = true,
+                filetype_is_not = {},
+                modifiable = true
+            },
+            write_all_buffers = false,
+            on_off_commands = true,
+            clean_command_line_interval = 2500
+        }
+        autosave.setup(default)
+    end
+end
+
 M.neoscroll = function()
     pcall(
         function()

@@ -43,8 +43,9 @@ M.plugins = {
    },
 
    default_plugin_config_replace = {
-      nvim_treesitter = require("custom.plugins.configs.treesitter").treesitter,
+      nvim_cmp = require("custom.plugins.configs.cmp").cmp,
       nvim_tree = require("custom.plugins.configs.others").nvimtree,
+      nvim_treesitter = require("custom.plugins.configs.treesitter").treesitter,
    },
 
    -- custom plugins

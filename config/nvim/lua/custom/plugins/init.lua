@@ -1,13 +1,21 @@
 local plugin_settings = require("core.utils").load_config().plugins
 
 local custom_plugins = {
+   -- autosave
+   {
+      "Pocco81/AutoSave.nvim",
+      config = function()
+         require("custom.plugins.configs.others").autosave()
+      end,
+   },
+
    -- smooth scroll
    {
        "karb94/neoscroll.nvim",
        event = "WinScrolled",
        config = function()
            require("custom.plugins.configs.others").neoscroll()
-       end
+       end,
    },
 
    -- lsp
