@@ -49,6 +49,17 @@ local custom_plugins = {
       "github/copilot.vim",
    },
 
+   -- utils
+   {
+      "folke/which-key.nvim",
+      config = function() require("which-key").setup {} end
+   },
+   {
+      "KenN7/vim-arsync",
+      cmd = {
+          "ARsyncUp", "ARsyncConf", "ARsyncDown", "ARsyncUpDelete",
+      },
+   },
 }
 
 return custom_plugins
