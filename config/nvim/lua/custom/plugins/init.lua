@@ -50,7 +50,7 @@ local custom_plugins = {
       run="./install.sh",
       requires = "hrsh7th/nvim-cmp",
       config = function()
-         require("custom.plugins.configs.others").cmp_tabnine()
+         require("custom.plugins.configs.others").tabnine()
       end
    },
    {
