@@ -8,8 +8,21 @@ local user_plugins = require("custom.plugins")
 -- example of changing theme:
 
 M.options = {
-  -- custom options
-
+   -- custom options
+   backspace = "", -- legacy backspace behavior
+   colorcolumn = "+1",
+   expandtab = false,
+   linebreak = true,
+   list = true,
+   listchars = 'tab:→ ,eol:¬,trail:⋅,extends:❯,precedes:❮,space:·',
+   maplocalleader = ",",
+   showbreak = "↪",
+   showmatch = true,
+   scrolloff = 8,
+   splitbelow = true,
+   splitright = true,
+   textwidth = 79,
+   wrap = false,
 }
 
 M.ui = {

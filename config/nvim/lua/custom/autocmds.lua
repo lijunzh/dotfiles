@@ -24,3 +24,14 @@ augroup auto_save_remove_white_space
    autocmd BufWritePre * silent! %s#\($\n\s*\)\+\%$##
 augroup END
 ]], false)
+
+-- 79 column line exceptions
+vim.api.nvim_exec([[
+augroup column_width
+   autocmd!
+   " no text wrap for text files
+   autocmd Filetype tex,plaintex,markdown,text setlocal tw=0 wrap
+   " 72 columns for git commit
+   autocmd Filetype gitcommit setlocal spell textwidth=72
+augroup END
+]], false)
