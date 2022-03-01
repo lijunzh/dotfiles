@@ -10,7 +10,7 @@ local custom_plugins = {
 			autosave.setup({
 				enabled = true,
 				execution_message = "autosaved at : " .. vim.fn.strftime("%H:%M:%S"),
-				events = { "FocusLost", "InsertLeave", "TextChanged" },
+				events = { "FocusLost" },
 				conditions = {
 					exists = true,
 					filetype_is_not = {},
@@ -80,15 +80,22 @@ local custom_plugins = {
 	},
 
 	-- ai tools
+   {
+      "tzachar/cmp-tabnine",
+      after = "nvim-cmp",
+      run="./install.sh",
+      requires = "hrsh7th/nvim-cmp",
+      config = function()
+         require("custom.plugins.tabnine").setup()
+      end,
+   },
+
 	{
 		"github/copilot.vim",
-		disable = true,
 		event = "InsertEnter",
 		config = function()
-			vim.cmd([[
-            imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-            let g:copilot_no_tab_map = v:true
-         ]])
+         vim.g.copilot_assume_mapped = true
+         vim.g.copilot_no_tab_map = true
 		end,
 	},
 
