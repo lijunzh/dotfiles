@@ -45,16 +45,11 @@ local custom_plugins = {
 
    -- ai tools
    {
-      "tzachar/cmp-tabnine",
-      after = "nvim-cmp",
-      run="./install.sh",
-      requires = "hrsh7th/nvim-cmp",
-      config = function()
-         require("custom.plugins.configs.others").tabnine()
-      end
-   },
-   {
       "github/copilot.vim",
+      event = "InsertEnter",
+      config = function()
+         require("custom.plugins.configs.others").copilot()
+      end,
    },
 
    -- utils
