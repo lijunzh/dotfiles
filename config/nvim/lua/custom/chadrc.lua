@@ -6,24 +6,6 @@ local default_plugins_user_config = require("custom.plugins.configs")
 -- make sure you maintain the structure of `core/default_config.lua` here,
 -- example of changing theme:
 
-M.options = {
-	-- custom options
-	backspace = "", -- legacy backspace behavior
-	colorcolumn = "+1",
-	expandtab = false,
-	linebreak = true,
-	list = true,
-	listchars = "tab:→ ,eol:¬,trail:⋅,extends:❯,precedes:❮,space:·",
-	maplocalleader = ",",
-	showbreak = "↪",
-	showmatch = true,
-	scrolloff = 8,
-	splitbelow = true,
-	splitright = true,
-	textwidth = 79,
-	wrap = false,
-}
-
 M.ui = {
 	theme = "gruvchad",
 }
