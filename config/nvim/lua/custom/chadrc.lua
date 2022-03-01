@@ -1,8 +1,7 @@
 local M = {}
 
 local user_plugins = require("custom.plugins")
-
-
+local default_plugins_user_config = require("custom.plugins.configs")
 
 -- make sure you maintain the structure of `core/default_config.lua` here,
 -- example of changing theme:
@@ -51,13 +50,13 @@ M.plugins = {
    -- setup lsp servers
    options = {
       lspconfig = {
-         setup_lspconf = "custom.plugins.configs.lspconfig",
+         setup_lspconf = "custom.plugins.lspconfig",
       }
    },
 
    default_plugin_config_replace = {
-      nvim_tree = require("custom.plugins.configs.others").nvimtree,
-      nvim_treesitter = require("custom.plugins.configs.treesitter").treesitter,
+      nvim_tree = default_plugins_user_config.nvimtree,
+      nvim_treesitter = default_plugins_user_config.treesitter,
    },
 
    -- custom plugins

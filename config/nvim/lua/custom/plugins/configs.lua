@@ -1,5 +1,11 @@
 local M = {}
 
+M.nvimtree = {
+   git = {
+      enable = true,
+   },
+}
+
 -- overriding default plugin configs!
 M.treesitter = {
    ensure_installed = {
