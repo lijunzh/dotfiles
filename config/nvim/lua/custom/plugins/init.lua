@@ -37,6 +37,7 @@ local custom_plugins = {
       end,
    },
 
+   -- stabilize window open/close
    {
       "luukvbaal/stabilize.nvim",
       config = function() 
@@ -49,6 +50,15 @@ local custom_plugins = {
       "onsails/lspkind-nvim",
       disable = not plugin_settings.status.lspsignature,
       after = "nvim-lspconfig",
+   },
+
+   -- formating tool
+   {
+      "jose-elias-alvarez/null-ls.nvim",
+      after = "nvim-lspconfig",
+      config = function()
+         require("custom.plugins.null-ls").setup()
+      end,
    },
 
    -- nvim-treesitter extensions
