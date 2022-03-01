@@ -38,4 +38,4 @@ vim.opt.textwidth = options.textwidth
 vim.opt.colorcolumn = options.colorcolumn
 
 -- highlight on yank
-vim.cmd('au TextYankPost * silent! lua vim.highlight.on_yank()')
+vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank()")

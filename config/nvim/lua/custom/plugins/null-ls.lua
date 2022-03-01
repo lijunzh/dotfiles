@@ -9,7 +9,7 @@ local sources = {
 
 	-- python
 	b.formatting.black,
-   b.formatting.isort,
+	b.formatting.isort,
 
 	-- shell
 	b.formatting.shfmt,
