@@ -82,6 +82,7 @@ local custom_plugins = {
 	-- ai tools
 	{
 		"github/copilot.vim",
+		disable = true,
 		event = "InsertEnter",
 		config = function()
 			vim.cmd([[

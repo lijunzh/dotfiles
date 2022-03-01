@@ -55,7 +55,7 @@ M.plugins = {
 	},
 
 	default_plugin_config_replace = {
-		nvim_tree = default_plugins_user_config.nvimtree,
+		nvim_tree = default_plugins_user_config.cmp,
 		nvim_treesitter = default_plugins_user_config.treesitter,
 	},
 
