@@ -7,6 +7,9 @@ local default_plugins_user_config = require("custom.plugins.configs")
 -- example of changing theme:
 
 M.options = {
+   -- default options
+   tabstop = 2,
+
 	-- custom options
 	backspace = "", -- legacy backspace behavior
 	colorcolumn = "+1",
