@@ -1,5 +1,3 @@
-local plugin_settings = require("core.utils").load_config().plugins
-
 local custom_plugins = {
 	-- autosave
 	{
@@ -48,7 +46,6 @@ local custom_plugins = {
 	-- lsp
 	{
 		"onsails/lspkind-nvim",
-		disable = not plugin_settings.status.lspsignature,
 		after = "nvim-lspconfig",
 	},
 
