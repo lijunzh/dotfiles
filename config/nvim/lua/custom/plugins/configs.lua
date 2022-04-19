@@ -1,6 +1,6 @@
 local M = {}
 local cmp = require("cmp")
-local compare = require("cmp.config.compare")
+-- local compare = require("cmp.config.compare")
 local source_mapping = {
 	buffer = "[Buffer]",
 	nvim_lsp = "[LSP]",
@@ -38,20 +38,20 @@ M.cmp = {
 		end,
 	},
 
-	sorting = {
-		priority_weight = 2,
-		comparators = {
-			require("cmp_tabnine.compare"),
-			compare.offset,
-			compare.exact,
-			compare.score,
-			compare.recently_used,
-			compare.kind,
-			compare.sort_text,
-			compare.length,
-			compare.order,
-		},
-	},
+	-- sorting = {
+	-- 	priority_weight = 2,
+	-- 	comparators = {
+	-- 		require("cmp_tabnine.compare"),
+	-- 		compare.offset,
+	-- 		compare.exact,
+	-- 		compare.score,
+	-- 		compare.recently_used,
+	-- 		compare.kind,
+	-- 		compare.sort_text,
+	-- 		compare.length,
+	-- 		compare.order,
+	-- 	},
+	-- },
 
 	mapping = {
 		["<C-p>"] = cmp.mapping.select_prev_item(),
