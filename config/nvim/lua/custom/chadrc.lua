@@ -76,9 +76,9 @@ M.mappings = {
 	-- terminal related mappings
 	terminal = {
 		-- spawn terminals
-		new_horizontal = "<leader>ts",
-		new_vertical = "<leader>tv",
-		new_window = "<leader>tw",
+		spawn_horizontal = "<leader>ts",
+		spawn_vertical = "<leader>tv",
+		spawn_window = "<leader>tw",
 	},
 }
 
