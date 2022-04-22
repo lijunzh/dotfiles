@@ -1,6 +1,0 @@
-# ssh remote and then start tmux
-
-function ssht() {
-	ssh -t $1 "tmux attach || tmux new";
-}
-
