@@ -1,41 +1,35 @@
-local options = require("core.utils").load_config().options
-
 --------------------------------------------------------------------------------
 -- editor
 --------------------------------------------------------------------------------
 
+-- Override the default tab stop
+vim.g.tabstop = 2
+
 -- Map local leader key
-vim.g.maplocalleader = options.maplocalleader
+vim.g.maplocalleader = ","
 
 -- have some line above and below cursor
-vim.opt.scrolloff = options.scrolloff
+vim.opt.scrolloff = 8
 
 -- control backspace behavior
-vim.opt.backspace = options.backspace
-
--- file extension specific tabbing
-vim.cmd([[autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4]])
-vim.cmd([[autocmd Filetype lua setlocal expandtab tabstop=3 shiftwidth=3 softtabstop=3]])
+vim.opt.backspace = "" -- legacy backspace behavior
 
 --------------------------------------------------------------------------------
 -- appearance
 --------------------------------------------------------------------------------
 
-vim.opt.showmatch = options.showmatch
+vim.opt.showmatch = true
 
 -- line wrap
-vim.opt.wrap = options.wrap
-vim.opt.linebreak = options.linebreak
-vim.opt.showbreak = options.showbreak
+vim.opt.wrap = false
+vim.opt.linebreak = true
+vim.opt.showbreak = "↪"
 
 -- list
-vim.opt.list = options.list
-vim.opt.listchars = options.listchars
+vim.opt.list = true
+vim.opt.listchars = "tab:→ ,eol:¬,trail:⋅,extends:❯,precedes:❮,space:·"
 
 -- 79 column line
 -- excpetions for git and text file are defined in utils.lua
-vim.opt.textwidth = options.textwidth
-vim.opt.colorcolumn = options.colorcolumn
-
--- highlight on yank
-vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank()")
+vim.opt.textwidth = 79
+vim.opt.colorcolumn = "+1"

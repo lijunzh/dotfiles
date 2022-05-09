@@ -1,8 +1,7 @@
-local custom_plugins = {
-	-- autosave
-	{
-		"Pocco81/AutoSave.nvim",
-		config = function()
+return {
+   -- autosave
+   ["Pocco81/AutoSave.nvim"] = {
+      config = function()
 			local autosave = require("autosave")
 
 			autosave.setup({
@@ -19,11 +18,10 @@ local custom_plugins = {
 				write_all_buffers = false,
 			})
 		end,
-	},
+   },
 
-	-- smooth scroll
-	{
-		"karb94/neoscroll.nvim",
+   -- smooth scroll
+	["karb94/neoscroll.nvim"] = {
 		opt = true,
 		config = function()
 			require("neoscroll").setup()
@@ -35,50 +33,49 @@ local custom_plugins = {
 		end,
 	},
 
-	-- stabilize window open/close
-	{
-		"luukvbaal/stabilize.nvim",
+   -- stabilize window open/close
+	["luukvbaal/stabilize.nvim"] = {
 		config = function()
 			require("stabilize").setup()
 		end,
 	},
 
-	-- lsp
-	{
-		"onsails/lspkind-nvim",
+   -- lsp
+	["onsails/lspkind-nvim"] = {
 		after = "nvim-lspconfig",
 	},
 
-	-- formating tool
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		after = "nvim-lspconfig",
-		config = function()
-			require("custom.plugins.null-ls").setup()
-		end,
-	},
+   -- formating tool
+   ["jose-elias-alvarez/null-ls.nvim"] = {
+      after = "nvim-lspconfig",
+      config = function()
+         require("custom.plugins.null-ls").setup()
+      end,
+   },
 
-	-- nvim-treesitter extensions
-	{
-		"p00f/nvim-ts-rainbow",
+   -- nvim-treesitter extensions
+	["p00f/nvim-ts-rainbow"] = {
 		event = "BufRead",
 	},
-	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
+	["nvim-treesitter/nvim-treesitter-textobjects"] = {
 		event = "BufRead",
 	},
-	{
-		"JoosepAlviste/nvim-ts-context-commentstring",
+	["JoosepAlviste/nvim-ts-context-commentstring"] = {
 		event = "BufRead",
 	},
-	{
-		"romgrk/nvim-treesitter-context",
+	["romgrk/nvim-treesitter-context"] = {
 		event = "BufRead",
 	},
+   ["windwp/nvim-ts-autotag"] = {
+      ft = { "html", "javascriptreact" },
+      after = "nvim-treesitter",
+      config = function()
+         require("nvim-ts-autotag").setup()
+      end,
+   },
 
-	-- ai tools
-	{
-		"tzachar/cmp-tabnine",
+   -- ai tools
+	["tzachar/cmp-tabnine"] = {
 		after = "nvim-cmp",
 		run = "./install.sh",
 		requires = "hrsh7th/nvim-cmp",
@@ -86,8 +83,7 @@ local custom_plugins = {
 			require("custom.plugins.tabnine").setup()
 		end,
 	},
-	{
-		"github/copilot.vim",
+	["github/copilot.vim"] = {
 		event = "InsertEnter",
 		-- config = function()
 		-- 	vim.g.copilot_assume_mapped = true
@@ -96,15 +92,13 @@ local custom_plugins = {
 		-- end,
 	},
 
-	-- utils
-	{
-		"folke/which-key.nvim",
+   -- utils
+	["folke/which-key.nvim"] = {
 		config = function()
 			require("which-key").setup({})
 		end,
 	},
-	{
-		"KenN7/vim-arsync",
+	["KenN7/vim-arsync"] = {
 		cmd = {
 			"ARsyncUp",
 			"ARsyncConf",
@@ -113,5 +107,3 @@ local custom_plugins = {
 		},
 	},
 }
-
-return custom_plugins

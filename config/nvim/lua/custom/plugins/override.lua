@@ -1,6 +1,6 @@
-local M = {}
-local cmp = require("cmp")
--- local compare = require("cmp.config.compare")
+-- overriding default plugin configs!
+
+local cmp = require "cmp"
 local source_mapping = {
 	buffer = "[Buffer]",
 	nvim_lsp = "[LSP]",
@@ -8,82 +8,26 @@ local source_mapping = {
 	cmp_tabnine = "[TN]",
 	path = "[Path]",
 }
+local M = {}
 
--- disable cmp <Tab> and <Shift-Tab>
-M.cmp = {
-	sources = {
-		{ name = "cmp_tabnine" },
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-		{ name = "buffer" },
-		{ name = "nvim_lua" },
-		{ name = "path" },
-	},
-
-	formatting = {
-		format = function(entry, vim_item)
-			local icons = require("plugins.configs.lspkind_icons")
-			vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-
-			local menu = source_mapping[entry.source.name]
-			if entry.source.name == "cmp_tabnine" then
-				if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-					menu = entry.completion_item.data.detail .. " " .. menu
-				end
-				vim_item.kind = ""
-			end
-			vim_item.menu = menu
-
-			return vim_item
-		end,
-	},
-
-	-- sorting = {
-	-- 	priority_weight = 2,
-	-- 	comparators = {
-	-- 		require("cmp_tabnine.compare"),
-	-- 		compare.offset,
-	-- 		compare.exact,
-	-- 		compare.score,
-	-- 		compare.recently_used,
-	-- 		compare.kind,
-	-- 		compare.sort_text,
-	-- 		compare.length,
-	-- 		compare.order,
-	-- 	},
-	-- },
-
-	mapping = {
-		["<C-p>"] = cmp.mapping.select_prev_item(),
-		["<C-n>"] = cmp.mapping.select_next_item(),
-		["<C-e>"] = cmp.mapping.close(),
-		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		}),
-		["<Tab>"] = cmp.config.disable,
-		["<S-Tab>"] = cmp.config.disable,
-	},
-}
-
--- overriding default plugin configs!
 M.treesitter = {
-	ensure_installed = {
-		"bash",
-		"c",
-		"css",
-		"html",
-		"javascript",
-		"json",
-		"lua",
-		"markdown",
-		"python",
-		"rust",
-		"toml",
-		"vim",
-	},
+   ensure_installed = {
+      "bash",
+      "c",
+      "css",
+      "html",
+      "javascript",
+      "json",
+      "lua",
+      "markdown",
+      "python",
+      "rust",
+      "toml",
+      "vim",
+      "yaml",
+   },
 
-	rainbow = {
+   rainbow = {
 		enable = true,
 		extended_mode = true,
 		max_file_lines = 1000,
@@ -141,6 +85,53 @@ M.treesitter = {
 			-- exactly match "impl_item" only)
 			-- rust = true,
 		},
+	},
+}
+
+M.nvimtree = {
+   git = {
+      enable = true,
+   },
+}
+
+M.cmp = {
+   sources = {
+		{ name = "cmp_tabnine" },
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+		{ name = "buffer" },
+		{ name = "nvim_lua" },
+		{ name = "path" },
+	},
+
+	formatting = {
+		format = function(entry, vim_item)
+			local icons = require("plugins.configs.lspkind_icons")
+			vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+
+			local menu = source_mapping[entry.source.name]
+			if entry.source.name == "cmp_tabnine" then
+				if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+					menu = entry.completion_item.data.detail .. " " .. menu
+				end
+				vim_item.kind = ""
+			end
+			vim_item.menu = menu
+
+			return vim_item
+		end,
+	},
+
+	mapping = {
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-n>"] = cmp.mapping.select_next_item(),
+		["<C-e>"] = cmp.mapping.close(),
+		["<CR>"] = cmp.mapping.confirm({
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true,
+		}),
+		["<Tab>"] = cmp.config.disable,
+		["<S-Tab>"] = cmp.config.disable,
 	},
 }
 
