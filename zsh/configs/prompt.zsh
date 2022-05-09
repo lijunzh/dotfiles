@@ -58,7 +58,7 @@ git_info() {
 
 }
 
-setopt prompt_subst
+setopt promptsubst
 
 # Use ❯ as the non-root prompt character; # for root
 # Change the prompt character color if the last command had a nonzero exit code
