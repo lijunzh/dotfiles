@@ -1,5 +1,17 @@
-local map = require("core.utils").map
+local M = {}
 
--- packer
-map("n", "<C-p>c", ":PackerClean <CR>")
-map("n", "<C-p>s", ":PackerSync <CR>")
+M.misc = {
+	n = {
+		["<leader>w"] = { ":w <CR> ", "   save buffer" },
+		["<leader>k"] = { ":q <CR> ", "   close window" },
+	},
+}
+
+M.packer = {
+	n = {
+		["<C-p>c"] = { ":PackerClean <CR>", "   packer clean" },
+		["<C-p>s"] = { ":PackerSync <CR>", "   packer sync" },
+	},
+}
+
+return M

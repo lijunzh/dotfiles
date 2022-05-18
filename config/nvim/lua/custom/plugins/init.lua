@@ -1,7 +1,7 @@
 return {
-   -- autosave
-   ["Pocco81/AutoSave.nvim"] = {
-      config = function()
+	-- autosave
+	["Pocco81/AutoSave.nvim"] = {
+		config = function()
 			local autosave = require("autosave")
 
 			autosave.setup({
@@ -18,42 +18,41 @@ return {
 				write_all_buffers = false,
 			})
 		end,
-   },
+	},
 
-   -- smooth scroll
+	-- smooth scroll
 	["karb94/neoscroll.nvim"] = {
-		opt = true,
 		config = function()
 			require("neoscroll").setup()
 		end,
 
 		-- lazy loading
 		setup = function()
-			require("core.utils").packer_lazy_load("neoscroll.nvim")
+			nvchad.packer_lazy_load("neoscroll.nvim")
 		end,
 	},
 
-   -- stabilize window open/close
+	-- stabilize window open/close
 	["luukvbaal/stabilize.nvim"] = {
 		config = function()
 			require("stabilize").setup()
 		end,
 	},
 
-   -- lsp
+	-- lsp
 	["onsails/lspkind-nvim"] = {
 		after = "nvim-lspconfig",
 	},
 
-   -- formating tool
-   ["jose-elias-alvarez/null-ls.nvim"] = {
-      after = "nvim-lspconfig",
-      config = function()
-         require("custom.plugins.null-ls").setup()
-      end,
-   },
+	-- formating tool
+	["jose-elias-alvarez/null-ls.nvim"] = {
+		after = "nvim-lspconfig",
+		config = function()
+			require("custom.plugins.null-ls").setup()
+		end,
+	},
 
-   -- nvim-treesitter extensions
+	-- nvim-treesitter extensions
 	["p00f/nvim-ts-rainbow"] = {
 		event = "BufRead",
 	},
@@ -66,15 +65,15 @@ return {
 	["romgrk/nvim-treesitter-context"] = {
 		event = "BufRead",
 	},
-   ["windwp/nvim-ts-autotag"] = {
-      ft = { "html", "javascriptreact" },
-      after = "nvim-treesitter",
-      config = function()
-         require("nvim-ts-autotag").setup()
-      end,
-   },
+	["windwp/nvim-ts-autotag"] = {
+		ft = { "html", "javascriptreact" },
+		after = "nvim-treesitter",
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end,
+	},
 
-   -- ai tools
+	-- ai tools
 	["tzachar/cmp-tabnine"] = {
 		after = "nvim-cmp",
 		run = "./install.sh",
@@ -87,17 +86,12 @@ return {
 		event = "InsertEnter",
 		-- config = function()
 		-- 	vim.g.copilot_assume_mapped = true
-		-- 	vim.g.copilot_no_tab_map = true 
+		-- 	vim.g.copilot_no_tab_map = true
 		-- 	vim.g.copilot_copilot_tab_fallback = ""
 		-- end,
 	},
 
-   -- utils
-	["folke/which-key.nvim"] = {
-		config = function()
-			require("which-key").setup({})
-		end,
-	},
+	-- utils
 	["KenN7/vim-arsync"] = {
 		cmd = {
 			"ARsyncUp",
