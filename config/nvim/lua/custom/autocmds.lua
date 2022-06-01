@@ -39,13 +39,13 @@ augroup END
 local autocmd = vim.api.nvim_create_autocmd
 
 -- Open nvim with a dir
-autocmd("BufEnter", {
-	callback = function()
-		if vim.api.nvim_buf_get_option(0, "buftype") ~= "terminal" then
-			vim.cmd "lcd %:p:h"
-		end
-	end,
-})
+-- autocmd("BufEnter", {
+-- 	callback = function()
+-- 		if vim.api.nvim_buf_get_option(0, "buftype") ~= "terminal" then
+-- 			vim.cmd "lcd %:p:h"
+-- 		end
+-- 	end,
+-- })
 
 -- Use relative & absolute line numbers in 'n' & 'i' modes respectively
 autocmd("InsertEnter", {
