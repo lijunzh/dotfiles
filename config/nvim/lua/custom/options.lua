@@ -3,7 +3,9 @@
 --------------------------------------------------------------------------------
 
 -- Override the default tab stop
-vim.g.tabstop = 2
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = false
 
 -- Map local leader key
 vim.g.maplocalleader = ","
