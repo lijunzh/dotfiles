@@ -35,3 +35,16 @@ vim.opt.listchars = "tab:→ ,eol:¬,trail:⋅,extends:❯,precedes:❮,space:·
 -- excpetions for git and text file are defined in utils.lua
 vim.opt.textwidth = 79
 vim.opt.colorcolumn = "+1"
+
+-- enable netrw builtin
+local netrw_stuff = {
+	"netrw",
+	"netrwPlugin",
+	"netrwSettings",
+	"netrwFileHandlers",
+}
+
+for _, plugin in pairs(netrw_stuff) do
+	vim.g["loaded_" .. plugin] = nil
+	vim.cmd("runtime " .. plugin)
+end

@@ -30,22 +30,6 @@ M.options = {
 	user = function()
 		require("custom.options")
 	end,
-	disable_default_plugins = {
-		"2html_plugin",
-		"getscript",
-		"getscriptPlugin",
-		"gzip",
-		"logipat",
-		"matchit",
-		"tar",
-		"tarPlugin",
-		"rrhelper",
-		"spellfile_plugin",
-		"vimball",
-		"vimballPlugin",
-		"zip",
-		"zipPlugin",
-	},
 }
 
 M.mappings = require("custom.mappings")
