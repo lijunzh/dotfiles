@@ -27,11 +27,6 @@ return {
 		end,
 	},
 
-	-- lsp
-	["onsails/lspkind-nvim"] = {
-		after = "nvim-lspconfig",
-	},
-
 	-- formating tool
 	["jose-elias-alvarez/null-ls.nvim"] = {
 		after = "nvim-lspconfig",
