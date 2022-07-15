@@ -35,7 +35,7 @@ M.plugins = {
 			 
 				 formatting = {
 					 format = function(entry, vim_item)
-						 local icons = require("ui.icons").lspkind
+						 local icons = require("nvchad_ui.icons").lspkind
 						 vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
 			 
 						 local menu = source_mapping[entry.source.name]
