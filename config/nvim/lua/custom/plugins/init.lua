@@ -57,14 +57,14 @@ return {
 	},
 
 	-- ai tools
-	["tzachar/cmp-tabnine"] = {
-		after = "nvim-cmp",
-		run = "./install.sh",
-		requires = "hrsh7th/nvim-cmp",
-		config = function()
-			require("custom.plugins.tabnine").setup()
-		end,
-	},
+	-- ["tzachar/cmp-tabnine"] = {
+	-- 	after = "nvim-cmp",
+	-- 	run = "./install.sh",
+	-- 	requires = "hrsh7th/nvim-cmp",
+	-- 	config = function()
+	-- 		require("custom.plugins.tabnine").setup()
+	-- 	end,
+	-- },
 	-- ["github/copilot.vim"] = {
 	-- 	event = "InsertEnter",
 		-- config = function()
