@@ -34,6 +34,7 @@ brew install \
 	tmux \
 	poetry \
 	pre-commit \
+	pyenv \
 	gpg
 
 # editor
