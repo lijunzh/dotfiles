@@ -41,11 +41,8 @@ brew install \
 brew install \
 	llvm \
 	lua \
-	shellcheck \
 	neovim \
-	node \
-	stylua \
-	pyright
+	node 
 
 ################################################################################
 # rust
