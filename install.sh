@@ -34,6 +34,7 @@ brew install \
 	tmux \
 	poetry \
 	pre-commit \
+	git-delta \
 	gpg
 
 # editor
