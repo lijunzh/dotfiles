@@ -35,6 +35,7 @@ brew install \
 	poetry \
 	pre-commit \
 	git-delta \
+	pyenv \
 	gpg
 
 # editor
