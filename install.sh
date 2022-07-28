@@ -42,8 +42,9 @@ brew install \
 brew install \
 	llvm \
 	lua \
-	neovim \
-	node 
+	node \
+  go \
+	neovim
 
 ################################################################################
 # rust
