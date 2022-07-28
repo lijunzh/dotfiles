@@ -205,7 +205,13 @@
 
 [commit]
 
+	gpgSign = true
 	template = ~/.gitmessage
+
+
+[tag]
+	
+	gpgSign = true
 
 
 [diff]
