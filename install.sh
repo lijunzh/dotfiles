@@ -20,7 +20,7 @@ brew install \
 	fzf \
 	htop \
 	rcm \
-	repgrep \
+	ripgrep \
 	rsync \
 	tree \
 	wget \
