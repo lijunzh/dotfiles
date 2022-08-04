@@ -36,6 +36,7 @@ brew install \
 	pre-commit \
 	git-delta \
 	pyenv \
+  pyenv-virtualenv \
 	gpg
 
 # editor
