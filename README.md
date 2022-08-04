@@ -30,3 +30,7 @@ Run the installation script
 ```
 bash install.sh
 ```
+
+## Post Installation
+Restart the terminal, and enter `vim`. This should trigger the `PackerIntall` automatically. If not, type `PackerSync` in the `vim` command. Once all the plugins are installed, you can type `MasonInstallAll` (should have autocompleted for you) to install all the LSP servers.  
+
