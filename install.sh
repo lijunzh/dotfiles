@@ -3,12 +3,7 @@
 ################################################################################
 # homebrew
 ################################################################################
-if ! command -v which -s brew &> /dev/null ; then
-	# Install Homebrew
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-else
-	brew update
-fi
+brew update
 
 # basic sh utils
 brew install \
@@ -25,8 +20,6 @@ brew install \
 	tree \
 	wget \
 	zsh-completions \
-	git \
-	git-delta \
 	zsh-syntax-highlighting
 
 # developer sh utils
@@ -34,9 +27,10 @@ brew install \
 	tmux \
 	poetry \
 	pre-commit \
+	git \
 	git-delta \
 	pyenv \
-  pyenv-virtualenv \
+	pyenv-virtualenv \
 	gpg
 
 # editor
@@ -44,7 +38,7 @@ brew install \
 	llvm \
 	lua \
 	node \
-  go \
+	go \
 	neovim
 
 ################################################################################
