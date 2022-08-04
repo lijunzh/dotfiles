@@ -8,6 +8,7 @@ This repo is adapted from [thoughtbot/dotfiles](https://github.com/thoughtbot/do
 * Temporarily get `sudo` privileges.
 * Install XCode Command Line Tools by running `xcode-select --install`.
 * Use a [Nerd Font](https://www.nerdfonts.com/) in your terminal emulator.
+* Install [Homebrew](https://brew.sh/) and restart the shell.
 
 ## Installation
 
