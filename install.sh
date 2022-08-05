@@ -25,6 +25,7 @@ brew install \
 
 # developer sh utils
 brew install \
+  alacritty \
 	tmux \
 	poetry \
 	pre-commit \
