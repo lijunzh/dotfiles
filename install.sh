@@ -9,6 +9,7 @@ brew update
 brew install \
 	bat \
 	cmake \
+	cmake-docs \
 	exa \
 	fd \
 	ffmpeg \
