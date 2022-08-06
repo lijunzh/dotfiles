@@ -145,9 +145,9 @@ schemes:
 colors: *gruvbox_material_medium_dark
 
 # Always launch tmux
-shell:
-  program: /bin/zsh
-  args:
-    - --login
-    - '-c'
-    - 'tmux attach -t default || tmux new -s default'
+# shell:
+#   program: /bin/zsh
+#   args:
+#     - --login
+#     - '-c'
+#     - 'tmux attach -t default || tmux new -s default'
