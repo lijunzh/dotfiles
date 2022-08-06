@@ -1,2 +1,2 @@
-require("options.lua")
+require("custom.options")
 require("custom.autocmds")
