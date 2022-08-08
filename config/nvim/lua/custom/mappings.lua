@@ -1,9 +1,21 @@
 local M = {}
 
+M.disabled = {
+	n = {
+		["<S-b>"] = "",
+	},
+}
+
 M.misc = {
 	n = {
 		["<leader>w"] = { ":w <CR> ", "   save buffer" },
 		["<leader>k"] = { ":q <CR> ", "   close window" },
+	},
+}
+
+M.nvimtree = {
+	n = {
+		["-"] = { "<cmd> NvimTreeToggle <CR>", "   toggle nvimtree" },
 	},
 }
 
