@@ -1,4 +1,6 @@
 return {
+	['folke/which-key.nvim'] = { disable = false  },
+
 	-- autosave
 	["Pocco81/AutoSave.nvim"] = {
     module = "autosave",
