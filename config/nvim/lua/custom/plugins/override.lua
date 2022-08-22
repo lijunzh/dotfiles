@@ -118,6 +118,9 @@ M.mason = {
 		-- python
 		"pyright",
 
+		-- rust
+		"rust-analyzer",
+
 		-- web dev
 		"css-lsp",
 		"html-lsp",
