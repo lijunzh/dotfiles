@@ -1,11 +1,5 @@
 local M = {}
 
-M.disabled = {
-	n = {
-		["<S-b>"] = "",
-	},
-}
-
 M.misc = {
 	n = {
 		["<leader>w"] = { ":w <CR> ", "   save buffer" },
