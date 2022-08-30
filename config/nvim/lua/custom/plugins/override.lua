@@ -132,6 +132,9 @@ M.mason = {
 		-- shell
 		"shfmt",
 		"shellcheck",
+
+		-- yaml
+		"yaml-language-server",
 	},
 }
 
