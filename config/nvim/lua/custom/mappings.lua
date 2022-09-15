@@ -1,6 +1,6 @@
 local M = {}
 
-M.misc = {
+M.general = {
 	n = {
 		["<leader>w"] = { ":w <CR> ", "   save buffer" },
 		["<leader>k"] = { ":q <CR> ", "   close window" },
