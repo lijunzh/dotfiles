@@ -144,6 +144,7 @@ return {
 				"json-lsp",
 
 				-- shell
+				"bash-language-server",
 				"shfmt",
 				"shellcheck",
 
