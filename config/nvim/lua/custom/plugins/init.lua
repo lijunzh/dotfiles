@@ -126,7 +126,7 @@ return {
 		override_options = {
 			ensure_installed = {
 				-- c/cpp
-				"clang_format",
+				"clang-format",
 
 				-- lua stuff
 				"lua-language-server",
