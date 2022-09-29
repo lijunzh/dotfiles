@@ -8,7 +8,7 @@ local b = null_ls.builtins
 
 local sources = {
 
-	-- cpp
+	-- c/cpp
 	b.formatting.clang_format,
 
 	-- webdev stuff

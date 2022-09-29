@@ -125,6 +125,9 @@ return {
 	["williamboman/mason.nvim"] = {
 		override_options = {
 			ensure_installed = {
+				-- c/cpp
+				"clang_format",
+
 				-- lua stuff
 				"lua-language-server",
 				"stylua",
