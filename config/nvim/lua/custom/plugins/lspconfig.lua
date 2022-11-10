@@ -2,7 +2,7 @@ local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require("lspconfig")
-local servers = { "pyright", "html", "cssls", "clangd", "jsonls", "tsserver", "yamlls" , "bashls" }
+local servers = { "pyright", "html", "cssls", "clangd", "jsonls", "tsserver", "yamlls" , "bashls" , "texlab" }
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({

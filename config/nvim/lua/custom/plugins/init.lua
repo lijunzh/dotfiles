@@ -37,6 +37,7 @@ return {
 			 	"markdown",
 			 	"python",
 			 	"rust",
+				"texlab",
 			 	"toml",
 			 	"vim",
 			 	"yaml",
