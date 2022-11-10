@@ -37,7 +37,6 @@ return {
 			 	"markdown",
 			 	"python",
 			 	"rust",
-				"texlab",
 			 	"toml",
 			 	"vim",
 			 	"yaml",
@@ -135,6 +134,8 @@ return {
 
 				-- python
 				"pyright",
+				"black",
+				"isort",
 
 				-- rust
 				"rust-analyzer",
@@ -151,6 +152,9 @@ return {
 				"bash-language-server",
 				"shfmt",
 				"shellcheck",
+
+				-- latex
+				"texlab",
 
 				-- yaml
 				"yaml-language-server",
