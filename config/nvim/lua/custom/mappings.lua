@@ -4,6 +4,10 @@ M.general = {
 	n = {
 		["<leader>w"] = { ":w <CR> ", "   save buffer" },
 		["<leader>k"] = { ":q <CR> ", "   close window" },
+		[";"] = { ":", "command mode", opts = { nowait = true } },
+	},
+	i = {
+		["jk"] = { "<ESC>", "escape vim" },
 	},
 }
 

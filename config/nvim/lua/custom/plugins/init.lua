@@ -1,6 +1,10 @@
 return {
 	------------------------------ default plugins ------------------------------
 
+	["folke/which-key.nvim"] = {
+		disable = false,
+	},
+
 	["neovim/nvim-lspconfig"] = {
 		config = function()
 			require("plugins.configs.lspconfig")
@@ -164,14 +168,6 @@ return {
 
 	------------------------------ custom plugins ------------------------------
 
-	-- autosave
-	["Pocco81/AutoSave.nvim"] = {
-    module = "autosave",
-		config = function()
-			require("autosave").setup()
-		end,
-	},
-
 	-- formating tool
 	["jose-elias-alvarez/null-ls.nvim"] = {
 		after = "nvim-lspconfig",
@@ -198,6 +194,33 @@ return {
 		after = "nvim-treesitter",
 		config = function()
 			require("nvim-ts-autotag").setup()
+		end,
+	},
+
+
+	-- dim inactive windows
+	["andreadev-it/shade.nvim"] = {
+		-- opt = true,
+		config = function()
+			local present, shade = pcall(require, "shade")
+
+			if not present then
+				return
+			end
+
+			shade.setup {
+				overlay_opacity = 50,
+				opacity_step = 1,
+				exclude_filetypes = { "NvimTree" },
+			}
+		end,
+	},
+
+	-- autosave
+	["Pocco81/auto-save.nvim"] = {
+		-- opt = true,
+		config = function()
+			require("auto-save").setup()
 		end,
 	},
 
