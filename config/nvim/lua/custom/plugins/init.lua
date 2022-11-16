@@ -31,19 +31,19 @@ return {
 	["nvim-treesitter/nvim-treesitter"] = {
 		override_options = {
 			ensure_installed = {
-			 	"bash",
-			 	"c",
-			 	"css",
-			 	"html",
-			 	"javascript",
-			 	"json",
-			 	"lua",
-			 	"markdown",
-			 	"python",
-			 	"rust",
-			 	"toml",
-			 	"vim",
-			 	"yaml",
+				"bash",
+				"c",
+				"css",
+				"html",
+				"javascript",
+				"json",
+				"lua",
+				"markdown",
+				"python",
+				"rust",
+				"toml",
+				"vim",
+				"yaml",
 			},
 
 			rainbow = {
@@ -95,7 +95,7 @@ return {
 					-- Example for a specific filetype.
 					-- If a pattern is missing, *open a PR* so everyone can benefit.
 					rust = {
-							'impl_item',
+						"impl_item",
 					},
 				},
 				exact_patterns = {
@@ -163,7 +163,7 @@ return {
 				-- yaml
 				"yaml-language-server",
 			},
-		}
+		},
 	},
 
 	------------------------------ custom plugins ------------------------------
@@ -197,7 +197,6 @@ return {
 		end,
 	},
 
-
 	-- dim inactive windows
 	["andreadev-it/shade.nvim"] = {
 		-- opt = true,
@@ -208,11 +207,11 @@ return {
 				return
 			end
 
-			shade.setup {
+			shade.setup({
 				overlay_opacity = 50,
 				opacity_step = 1,
 				exclude_filetypes = { "NvimTree" },
-			}
+			})
 		end,
 	},
 
@@ -220,7 +219,9 @@ return {
 	["Pocco81/auto-save.nvim"] = {
 		-- opt = true,
 		config = function()
-			require("auto-save").setup()
+			require("auto-save").setup({
+				trigger_events = { "FocusLost" },
+			})
 		end,
 	},
 
