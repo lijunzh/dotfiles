@@ -197,23 +197,23 @@ return {
 		end,
 	},
 
-	-- dim inactive windows
-	["andreadev-it/shade.nvim"] = {
-		-- opt = true,
-		config = function()
-			local present, shade = pcall(require, "shade")
-
-			if not present then
-				return
-			end
-
-			shade.setup({
-				overlay_opacity = 50,
-				opacity_step = 1,
-				exclude_filetypes = { "NvimTree" },
-			})
-		end,
-	},
+	-- -- dim inactive windows
+	-- ["andreadev-it/shade.nvim"] = {
+	-- 	-- opt = true,
+	-- 	config = function()
+	-- 		local present, shade = pcall(require, "shade")
+	--
+	-- 		if not present then
+	-- 			return
+	-- 		end
+	--
+	-- 		shade.setup({
+	-- 			overlay_opacity = 50,
+	-- 			opacity_step = 1,
+	-- 			exclude_filetypes = { "NvimTree" },
+	-- 		})
+	-- 	end,
+	-- },
 
 	-- autosave
 	["Pocco81/auto-save.nvim"] = {
