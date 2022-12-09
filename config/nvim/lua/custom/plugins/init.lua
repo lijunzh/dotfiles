@@ -46,6 +46,11 @@ return {
 				"yaml",
 			},
 
+			indent = {
+				enable = true,
+				disable = { "python" },
+			},
+
 			rainbow = {
 				enable = true,
 				extended_mode = true,
