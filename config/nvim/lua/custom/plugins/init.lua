@@ -202,23 +202,14 @@ return {
 		end,
 	},
 
-	-- -- dim inactive windows
-	-- ["andreadev-it/shade.nvim"] = {
-	-- 	-- opt = true,
-	-- 	config = function()
-	-- 		local present, shade = pcall(require, "shade")
-	--
-	-- 		if not present then
-	-- 			return
-	-- 		end
-	--
-	-- 		shade.setup({
-	-- 			overlay_opacity = 50,
-	-- 			opacity_step = 1,
-	-- 			exclude_filetypes = { "NvimTree" },
-	-- 		})
-	-- 	end,
-	-- },
+	-- AI completion
+	["github/copilot.vim"] = {
+		event = "InsertEnter",
+		config = function()
+			vim.g.copilot_no_tab_map = true
+			vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+		end,
+	},
 
 	-- autosave
 	["Pocco81/auto-save.nvim"] = {
