@@ -24,11 +24,4 @@ M.nvimtree = {
 	},
 }
 
-M.packer = {
-	n = {
-		["<C-p>c"] = { ":PackerClean <CR>", "packer clean" },
-		["<C-p>s"] = { ":PackerSync <CR>", "packer sync" },
-	},
-}
-
 return M

@@ -2,7 +2,7 @@
 font:
   # Only specify normal, bold and italic will be inferred
   normal:
-    family: FiraCode Nerd Font
+    family: FiraMono Nerd Font
   # Point size of the font
   size: 14
     
