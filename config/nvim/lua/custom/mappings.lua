@@ -14,7 +14,7 @@ M.general = {
 		[";"] = { ":", "command mode", opts = { nowait = true } },
 	},
 	i = {
-		["jk"] = { "<ESC>", "escape vim" },
+		["jk"] = { "<ESC>", "escape insert mode" },
 	},
 }
 
