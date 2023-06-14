@@ -35,6 +35,10 @@ brew install \
 	pyenv-virtualenv \
 	gpg
 
+# font 
+brew tap homebrew/cask-fonts 
+brew install --cask font-fira-code-nerd-font
+
 # editor
 brew install \
 	llvm \
