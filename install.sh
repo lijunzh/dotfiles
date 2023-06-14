@@ -21,7 +21,8 @@ brew install \
 	tree \
 	wget \
 	zsh-completions \
-	zsh-syntax-highlighting
+	zsh-syntax-highlighting \
+	starship
 
 # developer sh utils
 brew install \
