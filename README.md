@@ -7,7 +7,7 @@ This repo is adapted from [thoughtbot/dotfiles](https://github.com/thoughtbot/do
 
 * Temporarily get `sudo` privileges.
 * Install XCode Command Line Tools by running `xcode-select --install`.
-* [Optional] Choose a [Nerd Font](https://www.nerdfonts.com/) in your terminal emulator. Fira-code Nerd Font will be installed by default via homebrew-cask-fonts.
+* [Optional] Choose a [Nerd Font](https://www.nerdfonts.com/) in your terminal emulator. Fira-Mono Nerd Font will be installed by default via homebrew-cask-fonts.
 * Install [Homebrew](https://brew.sh/) and restart the shell.
 
 ## Installation

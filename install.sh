@@ -38,7 +38,7 @@ brew install \
 
 # font 
 brew tap homebrew/cask-fonts 
-brew install --cask font-fira-code-nerd-font
+brew install --cask font-fira-mono-nerd-font
 
 # editor
 brew install \
