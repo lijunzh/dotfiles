@@ -1,6 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "176e85eeb63f1a5970d6b88f1725039d85ca0055" },
-  "LuaSnip": { "branch": "master", "commit": "a13af80734eb28f744de6c875330c9d3c24b5f3b" },
+  "LuaSnip": { "branch": "master", "commit": "bfbd03952f428db6e28bb199c713b1b25576cec9" },
   "base46": { "branch": "v2.0", "commit": "bad87b034430b0241d03868c3802c2f1a4e0b4be" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "0e6b2ed705ddcff9738ec4ea838141654f12eeef" },
@@ -8,8 +8,8 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "18095520391186d634a0045dacaa346291096566" },
   "extensions": { "branch": "v2.0", "commit": "fda140ca8362f4ec38516701ed94561aa720f2b6" },
-  "friendly-snippets": { "branch": "main", "commit": "49ca2a0e0e26427b550b1f64272d7fe7e4d7d51b" },
-  "gitsigns.nvim": { "branch": "main", "commit": "f1c5aa10509e8e109f449499b69567191d25320f" },
+  "friendly-snippets": { "branch": "main", "commit": "b3cd8d77feb7871d8b04bb45bcd8154120a796a1" },
+  "gitsigns.nvim": { "branch": "main", "commit": "4f8f66da9816ec4c4847653c9ab9bcb9c609508c" },
   "indent-blankline.nvim": { "branch": "master", "commit": "7075d7861f7a6bbf0de0298c83f8a13195e6ec01" },
   "lazy.nvim": { "branch": "main", "commit": "10d4371745f88837c78c8daab00c5be6e48abea4" },
   "mason.nvim": { "branch": "main", "commit": "4be1226f48bc2011024110f37b17f5ee468df58f" },
@@ -27,6 +27,6 @@
   "shade.nvim": { "branch": "master", "commit": "423cdb9be77ae64af29e770ef985e30c1c96d690" },
   "telescope.nvim": { "branch": "master", "commit": "00cf15074a2997487813672a75f946d2ead95eb0" },
   "trouble.nvim": { "branch": "main", "commit": "2af0dd9767526410c88c628f1cbfcb6cf22dd683" },
-  "ui": { "branch": "v2.0", "commit": "d35fb613352cc21a0dea172a1e97a5ab0d79ffd0" },
+  "ui": { "branch": "v2.0", "commit": "3311313832188e0aa53da3acb6d5b23c337345e6" },
   "which-key.nvim": { "branch": "main", "commit": "e271c28118998c93a14d189af3395812a1aa646c" }
 }
