@@ -24,4 +24,10 @@ M.nvimtree = {
 	},
 }
 
+M.lazy = {
+	n = {
+		["<C-s>"] = { ":Lazy sync <CR> ", "Run Lazy install, clean, and update."}
+	}
+}
+
 return M
