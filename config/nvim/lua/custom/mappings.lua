@@ -26,7 +26,7 @@ M.nvimtree = {
 
 M.lazy = {
 	n = {
-		["<C-s>"] = { ":Lazy sync <CR> ", "Run Lazy install, clean, and update."}
+		["<C-s>"] = { ":NvChadUpdate <CR> ", "Run Lazy install, clean, and update."}
 	}
 }
 
