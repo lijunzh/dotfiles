@@ -29,6 +29,9 @@ local sources = {
 
 	-- rust
 	format.rustfmt,
+
+	-- toml
+	format.taplo,
 }
 
 null_ls.setup {

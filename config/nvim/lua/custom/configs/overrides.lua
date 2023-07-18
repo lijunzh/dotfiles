@@ -54,6 +54,9 @@ M.mason = {
 		"shfmt",
 		"shellcheck",
 
+		-- toml
+		"taplo",
+
 		-- latex
 		"texlab",
 
