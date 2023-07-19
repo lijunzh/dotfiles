@@ -10,7 +10,7 @@ local lint = null_ls.builtins.diagnostics
 local sources = {
 
 	-- webdev stuff
-  format.deno_fmt,-- choosed deno for ts/js files cuz its very fast!
+  format.deno_fmt,-- chose deno for ts/js files cuz its very fast!
   format.prettier.with { filetypes = { "html", "markdown", "css" } },-- so prettier works only on these filetypes
 
 	-- Lua
@@ -32,6 +32,9 @@ local sources = {
 
 	-- toml
 	format.taplo,
+
+	-- yaml
+	format.yamlfmt,
 }
 
 null_ls.setup {
