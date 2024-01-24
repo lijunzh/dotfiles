@@ -10,7 +10,7 @@ brew install \
 	bat \
 	cmake \
 	cmake-docs \
-	exa \
+	eza \
 	fd \
 	ffmpeg \
 	fzf \
@@ -36,8 +36,8 @@ brew install \
 	pyenv-virtualenv \
 	gpg
 
-# font 
-brew tap homebrew/cask-fonts 
+# font
+brew tap homebrew/cask-fonts
 brew install --cask font-fira-mono-nerd-font
 
 # editor
