@@ -28,6 +28,9 @@ yellow = "0xd8a657"
 background = "0x282828"
 foreground = "0xd4be98"
 
+[window]
+option_as_alt = "OnlyLeft"
+
 [shell]
 args = ["--login", "-c", "tmux attach -t default || tmux new -s default"]
 program = "/bin/zsh"
