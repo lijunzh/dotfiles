@@ -6,8 +6,11 @@ This repo is adapted from [thoughtbot/dotfiles](https://github.com/thoughtbot/do
 ## Prerequisites
 
 * Temporarily get `sudo` privileges.
-* Install XCode Command Line Tools by running `xcode-select --install`.
 * [Optional] Choose a [Nerd Font](https://www.nerdfonts.com/) in your terminal emulator. Fira-Mono Nerd Font will be installed by default via homebrew-cask-fonts.
+* [Optional] [Smart Caps Lock: Remap to Control AND Escape](https://gist.github.com/tanyuan/55bca522bf50363ae4573d4bdcf06e2e)
+
+### MacOS Only
+* Install XCode Command Line Tools by running `xcode-select --install`.
 * Install [Homebrew](https://brew.sh/) and restart the shell.
 
 ## Installation
@@ -30,6 +33,3 @@ Run the installation script
 ```
 bash install.sh
 ```
-
-## Post Installation
-Restart the terminal, and enter `vim`. This should trigger the `PackerIntall` automatically. If not, type `PackerSync` in the `vim` command. Once all the plugins are installed, you can type `MasonInstallAll` (should have autocompleted for you) to install all the LSP servers.  
