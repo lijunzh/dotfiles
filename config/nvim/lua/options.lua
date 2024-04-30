@@ -1,14 +1,18 @@
+require "nvchad.options"
+
+-- add yours here!
+
+-- local o = vim.o
+-- o.cursorlineopt ='both' -- to enable cursorline!
+--
 --------------------------------------------------------------------------------
 -- editor
 --------------------------------------------------------------------------------
 
 -- Override the default tab stop
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 8
+vim.opt.shiftwidth = 8
 vim.opt.expandtab = false
-
--- Map local leader key
-vim.g.maplocalleader = ","
 
 -- have some line above and below cursor
 vim.opt.scrolloff = 8
