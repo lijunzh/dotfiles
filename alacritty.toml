@@ -31,6 +31,6 @@ foreground = "0xd4be98"
 [window]
 option_as_alt = "OnlyLeft"
 
-[shell]
-args = ["--login", "-c", "tmux attach -t default || tmux new -s default"]
-program = "/bin/zsh"
+# [shell]
+# args = ["--login", "-c", "tmux attach -t default || tmux new -s default"]
+# program = "/bin/zsh"
