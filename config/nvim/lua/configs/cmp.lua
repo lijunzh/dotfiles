@@ -1,8 +1,8 @@
-return {
+local options = {
 	sources = {
 		-- trigger_characters is for unocss lsp
 		{ name = "codeium" },
-		{ name = "nvim_lsp", trigger_characters = { "-" } },
+		{ name = "nvim_lsp" },
 		{ name = "path" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
@@ -12,3 +12,7 @@ return {
 		ghost_text = true,
 	},
 }
+
+-- require("cmp").setup(options)
+
+return options
