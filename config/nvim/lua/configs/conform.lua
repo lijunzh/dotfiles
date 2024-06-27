@@ -1,6 +1,6 @@
 local options = {
 
-	lsp_fallback = true,
+	-- lsp_fallback = true,
 
 	formatters_by_ft = {
 		lua = { "stylua" },
@@ -32,4 +32,6 @@ local options = {
 	-- },
 }
 
-require("conform").setup(options)
+-- require("conform").setup(options)
+
+return options

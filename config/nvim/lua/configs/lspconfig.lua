@@ -2,21 +2,21 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-local lspconfig = require "lspconfig"
+local lspconfig = require("lspconfig")
 local servers = { "ruff", "html", "cssls", "clangd", "jsonls", "yamlls", "bashls", "taplo", "texlab" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup {
+	lspconfig[lsp].setup({
 		on_attach = on_attach,
 		on_init = on_init,
 		capabilities = capabilities,
-	}
+	})
 end
-lspconfig["rust_analyzer"].setup {
+lspconfig["rust_analyzer"].setup({
 	on_attach = on_attach,
 	-- Server-specific settings...
 	settings = {
 		["rust-analyzer"] = {},
 	},
-}
+})
