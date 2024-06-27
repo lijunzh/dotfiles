@@ -59,6 +59,12 @@ autocmd({ "InsertEnter", "WinLeave" }, {
 	end,
 })
 
+-- Fix filetype for Markdown files
+autocmd("BufRead", {
+  pattern = "*.md",
+  command = "set filetype=markdown",
+})
+
 -- File extension specific tabbing
 autocmd("Filetype", {
 	pattern = "python",
