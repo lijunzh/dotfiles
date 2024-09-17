@@ -47,7 +47,11 @@ brew install \
 	node \
 	go \
 	deno \
+	ruby \
 	neovim
+
+# use brew ruby to replace system ruby
+echo 'export PATH="/opt/homebrew/opt/ruby/bin:$PATH"' >> ~/.zshrc.local
 
 ################################################################################
 # rust
