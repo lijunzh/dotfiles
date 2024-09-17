@@ -62,11 +62,6 @@ return {
 	},
 
 	{
-		"williamboman/mason.nvim",
-		opts = require("configs.mason"),
-	},
-
-	{
 		"nvim-treesitter/nvim-treesitter",
 		opts = require("configs.treesitter"),
 	},
