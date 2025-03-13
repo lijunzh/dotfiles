@@ -20,30 +20,24 @@ return {
 				end,
 			},
 			{
-				"Exafunction/codeium.nvim",
+				"zbirenbaum/copilot.lua",
+				cmd = "Copilot",
+				event = "InsertEnter",
 				config = function()
-					require("codeium").setup({
-						--------------------------------------------------------------------
-						--- Codeium options for enterprise users
-						--- Comment out the following line if you do notant to use the
-						--- enterprise version of codeium.
-						--------------------------------------------------------------------
-						api = {
-							host = "codeium.stage.dx.walmart.com",
-						},
-						enterprise_mode = true,
-						--------------------------------------------------------------------
-						--- end of codeium options
-						--------------------------------------------------------------------
+					require("copilot").setup({
+						suggestion = { enabled = false }, -- Disable inline suggestions if needed
+						panel = { enabled = false }, -- Disable floating panel if needed
 					})
 				end,
 			},
+			{
+				"zbirenbaum/copilot-cmp",
+				dependencies = { "zbirenbaum/copilot.lua" },
+				config = function()
+					require("copilot_cmp").setup()
+				end,
+			},
 		},
-		-- config = function(_, opts)
-		-- 	table.insert(opts.sources, 1, { name = "codeium" })
-		-- 	opts.experimental = { ghost_text = true }
-		-- 	require("cmp").setup(opts)
-		-- end,
 		opts = require("configs.cmp"),
 	},
 
