@@ -59,7 +59,6 @@ if [[ "$PLATFORM" == "macos" ]]; then
 
   # font
   echo "Installing Nerd Fonts..."
-  brew tap homebrew/cask-fonts
   brew install --cask font-fira-mono-nerd-font
 
   # editor
