@@ -59,13 +59,13 @@ autocmd({ "InsertEnter", "WinLeave" }, {
 	end,
 })
 
--- Fix filetype for Markdown files
-autocmd("BufRead", {
+-- Force markdown filetype on .md files (Neovim sometimes guesses wrong)
+autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*.md",
   command = "set filetype=markdown",
 })
 
--- File extension specific tabbing
+-- File extension specific indentation
 autocmd("Filetype", {
 	pattern = "python",
 	callback = function()
@@ -76,16 +76,7 @@ autocmd("Filetype", {
 	end,
 })
 autocmd("Filetype", {
-	pattern = "lua",
-	callback = function()
-		vim.opt_local.expandtab = true
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.softtabstop = 2
-	end,
-})
-autocmd("Filetype", {
-	pattern = "tex",
+	pattern = { "lua", "tex" },
 	callback = function()
 		vim.opt_local.expandtab = true
 		vim.opt_local.tabstop = 2
@@ -94,17 +85,18 @@ autocmd("Filetype", {
 	end,
 })
 
--- Highlight yanked text
+-- Highlight on yank
 autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
 	end,
 })
 
--- Enable spellchecking in markdown, text and gitcommit files
+-- Spell checking
 autocmd("FileType", {
-	pattern = { "gitcommit", "markdown", "text" },
+	pattern = { "gitcommit", "gitrebase", "markdown", "text" },
 	callback = function()
 		vim.opt_local.spell = true
+    vim.opt_local.spelllang = "en_us"
 	end,
 })
