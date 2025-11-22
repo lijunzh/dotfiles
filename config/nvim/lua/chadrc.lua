@@ -20,7 +20,6 @@ M.mason = {
 
 		-- python
 		"ruff",
-		"ruff-lsp",
 
 		-- web dev
 		"css-lsp",

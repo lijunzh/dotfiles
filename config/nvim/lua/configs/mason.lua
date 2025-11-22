@@ -6,7 +6,6 @@ return {
 
 		-- python
     "ruff",
-		"ruff-lsp",
 
 		-- web dev
 		"css-lsp",
