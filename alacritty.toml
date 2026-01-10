@@ -5,6 +5,16 @@
 # Terminal emulator focused on simplicity and performance
 
 ################################################################################
+# General Settings
+################################################################################
+[general]
+# Automatically reload config when it changes
+live_config_reload = true
+
+# Directory the shell is started in
+# working_directory = "None"
+
+################################################################################
 # Import (Optional)
 ################################################################################
 # You can split your config into multiple files
@@ -425,12 +435,6 @@ prefer_egl = false
 ################################################################################
 # Directory the shell is started in
 # working_directory = "None"
-
-################################################################################
-# Live Config Reload
-################################################################################
-# Automatically reload config when it changes
-live_config_reload = true
 
 ################################################################################
 # Hints
