@@ -5,12 +5,7 @@ return {
 		"stylua",
 
 		-- python
-    "ruff",
-
-		-- web dev
-		"css-lsp",
-		"html-lsp",
-		"prettier",
+		"ruff",
 
 		-- rust
 		"rust-analyzer",
@@ -29,5 +24,8 @@ return {
 		-- yaml
 		"yaml-language-server",
 		"yamlfmt",
+
+		-- general formatting
+		"prettier",
 	},
 }

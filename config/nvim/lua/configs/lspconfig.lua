@@ -1,36 +1,14 @@
 require("nvchad.configs.lspconfig").defaults()
 
 local servers = {
-	"ruff",
-	"html",
-	"cssls",
+	"bashls",
 	"clangd",
 	"jsonls",
-	"yamlls",
-	"bashls",
+	"lua_ls",
+	"ruff",
+	"rust_analyzer",
 	"taplo",
 	"texlab",
-	"rust_analyzer",
-	"lua_ls",
+	"yamlls",
 }
-vim.lsp.enable(servers)
-
-vim.lsp.config("rust_analyzer", {
-	settings = {
-		["rust-analyzer"] = {
-			check = { command = "clippy" },
-			cargo = { allFeatures = true },
-			-- your usual rust-analyzer tweaks
-		},
-	},
-})
-
-vim.lsp.config("lua_ls", {
-	settings = {
-		Lua = {
-			diagnostics = { globals = { "vim" } },
-			workspace = { library = vim.api.nvim_get_runtime_file("", true) },
-			telemetry = { enable = false },
-		},
-	},
-})
+vim.lsp.enable

@@ -1,26 +1,24 @@
 local options = {
 
-	-- lsp_fallback = true,
-
 	formatters_by_ft = {
 		lua = { "stylua" },
 
-		css = { "biome" },
-		html = { "biome" },
-		json = { "biome" },
-		jsonc = { "biome" },
+		css = { "prettier" },
+		html = { "prettier" },
+		json = { "prettier" },
+		jsonc = { "prettier" },
 
-    python = function(bufnr)
-      if require("conform").get_formatter_info("ruff_format", bufnr).available then
-        return { "ruff_format" }
-      else
-        return { "isort", "black" }
-      end
-    end,
+		python = function(bufnr)
+			if require("conform").get_formatter_info("ruff_format", bufnr).available then
+				return { "ruff_format" }
+			else
+				return { "isort", "black" }
+			end
+		end,
 
-    rust = { "rustfmt" },
+		rust = { "rustfmt" },
 
-		markdown = { "deno_fmt" },
+		markdown = { "prettier" },
 		sh = { "shfmt" },
 		yaml = { "yamlfmt" },
 	},
@@ -31,7 +29,5 @@ local options = {
 	-- 	lsp_fallback = true,
 	-- },
 }
-
--- require("conform").setup(options)
 
 return options
