@@ -1,34 +1,39 @@
-# ls alias
+# ============================================================================
+# Shell Aliases
+# ============================================================================
+# macOS-focused aliases for improved command-line experience
+
+# ----------------------------------------------------------------------------
+# ls (using eza if available)
+# ----------------------------------------------------------------------------
 type eza >/dev/null 2>&1 && alias ls="eza --icons --group-directories-first"
-if [[ $(uname -s) == "Linux" ]]; then
-	alias ls="ls --color"
-fi
 alias ll="ls -alF"
 
-alias mkdir="mkdir -p"			# mkdir parent directory if not exists
-alias ln="ln -v"						# ln always verbose
-alias cp="cp -i"						# confirm before overwriting something
-alias df="df -h"						# human readable sizes
+# ----------------------------------------------------------------------------
+# Safe operations
+# ----------------------------------------------------------------------------
+alias mkdir="mkdir -p"     # Create parent directories if needed
+alias ln="ln -v"           # Always verbose
+alias cp="cp -i"           # Confirm before overwriting
+alias df="df -h"           # Human readable sizes
 
-# previous directory
-alias -- -="cd -"
+# ----------------------------------------------------------------------------
+# Navigation
+# ----------------------------------------------------------------------------
+alias -- -="cd -"          # Go to previous directory
 
-# use neovim instead of vim
+# ----------------------------------------------------------------------------
+# Editor
+# ----------------------------------------------------------------------------
 type nvim >/dev/null 2>&1 && alias vim="nvim"
 
-# Pretty print the path
-alias path='echo $PATH | tr -s ":" "\n"'
+# ----------------------------------------------------------------------------
+# Utilities
+# ----------------------------------------------------------------------------
+alias path='echo $PATH | tr -s ":" "\n"'  # Pretty print PATH
 
-# source conda
-alias sa="conda activate"
-alias sd="conda deactivate"
-
-# GNU screen
-alias screen="TERM=xterm-256color; screen"
-alias screen_kill_all_detached="screen -ls | grep Detached | cut -d. -f1 | awk '{print $1}' | xargs kill"
-
-# tmux
-# alias tmux="TERM=xterm-256color; tmux"
-
-# Include custom aliases
+# ----------------------------------------------------------------------------
+# Local Customizations
+# ----------------------------------------------------------------------------
+# Include custom aliases from ~/.aliases.local
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local

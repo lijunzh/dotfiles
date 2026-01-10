@@ -87,9 +87,11 @@ This will install the language servers and formatters defined in `config/nvim/lu
   - stylua for Lua files
 
 ### Zsh
-- Custom functions in `zsh/functions/`: `g` (git status), `mcd` (mkdir + cd)
-- Configuration in `zshrc` and `zshenv`
-- Aliases in `aliases`
+- **Consolidated configuration**: All settings in `zshrc` (simplified from complex pre/main/post loading)
+- **Functions**: `g` (git status/git shortcut) and `mcd` (mkdir + cd) defined inline in `zshrc`
+- **Aliases**: Common shell aliases in `aliases`
+- **Environment**: Minimal `zshenv` for environment variables
+- **Completion**: Single completion file for `g` function in `zsh/completion/_g`
 
 ### GnuPG
 - GPG configuration in `gnupg/` directory
@@ -106,7 +108,8 @@ dotfiles/
 │   └── nvim/               # Neovim/NvChad configuration
 ├── gnupg/                  # GnuPG configuration
 ├── zsh/
-│   └── functions/          # Custom Zsh functions (g, mcd)
+│   └── completion/         # Zsh completion files
+│       └── _g              # Completion for g function
 ├── alacritty.toml          # Alacritty terminal config
 ├── tmux.conf               # Tmux configuration
 ├── gitconfig               # Git configuration
@@ -122,10 +125,11 @@ dotfiles/
 To customize this setup:
 1. Edit `Brewfile` (in root directory) to add/remove Homebrew packages
 2. Modify `config/nvim/lua/configs/mason.lua` to change LSP/formatter installations
-3. Update `zshrc`, `zshenv`, or `aliases` for shell customization
-4. Add functions to `zsh/functions/` for custom shell functions
-5. Adjust Alacritty settings in `alacritty.toml`
-6. Modify tmux settings in `tmux.conf`
+3. Update `zshrc` for shell options, functions, and keybindings
+4. Update `aliases` for command aliases
+5. Create `~/.zshrc.local` or `~/.aliases.local` for machine-specific customizations
+6. Adjust Alacritty settings in `alacritty.toml`
+7. Modify tmux settings in `tmux.conf`
 
 ## Troubleshooting
 
