@@ -35,10 +35,10 @@ return {
         cmd = "Telescope",
         keys = {
             { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
-            { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
-            { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-            { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
-            { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
+            { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live grep" },
+            { "<leader>fb", "<cmd>Telescope buffers<cr>",    desc = "Buffers" },
+            { "<leader>fh", "<cmd>Telescope help_tags<cr>",  desc = "Help tags" },
+            { "<leader>fo", "<cmd>Telescope oldfiles<cr>",   desc = "Recent files" },
         },
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -85,7 +85,8 @@ return {
 
     {
         "williamboman/mason.nvim",
-        cmd = "Mason",
+        lazy = false,
+        priority = 900,
         build = ":MasonUpdate",
         config = function()
             require("mason").setup({
@@ -103,7 +104,8 @@ return {
 
     {
         "williamboman/mason-lspconfig.nvim",
-        event = { "BufReadPre", "BufNewFile" },
+        lazy = false,
+        priority = 800,
         dependencies = {
             "williamboman/mason.nvim",
             "neovim/nvim-lspconfig",
@@ -119,7 +121,8 @@ return {
 
     {
         "neovim/nvim-lspconfig",
-        lazy = true, -- Loaded by mason-lspconfig
+        lazy = false,
+        priority = 700,
     },
 
     -- ========================================================================
