@@ -25,4 +25,4 @@ brew "tmux"
 brew "uv"
 
 # Font
-cask "font-fira-mono-nerd-font"
+cask "font-fira-code-nerd-font"
