@@ -27,5 +27,6 @@ return {
 
 		-- general formatting
 		"prettier",
+		"deno",
 	},
 }
