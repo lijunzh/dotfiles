@@ -133,17 +133,15 @@ local server_configs = {
 -- Mason LSP Setup
 -- ============================================================================
 
+-- First setup mason-lspconfig
 mason_lspconfig.setup({
     ensure_installed = vim.tbl_keys(server_configs),
     automatic_installation = true,
 })
 
--- Setup each server
-mason_lspconfig.setup_handlers({
-    function(server_name)
-        local config = server_configs[server_name] or {}
-        config.on_attach = on_attach
-        config.capabilities = capabilities
-        lspconfig[server_name].setup(config)
-    end,
-})
+-- Then setup each server
+for server_name, config in pairs(server_configs) do
+    config.on_attach = on_attach
+    config.capabilities = capabilities
+    lspconfig[server_name].setup(config)
+end

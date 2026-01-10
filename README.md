@@ -88,9 +88,8 @@ config/nvim/
     │   ├── keymaps.lua   # Keybindings
     │   └── autocmds.lua  # Autocommands
     └── plugins/
-        ├── init.lua      # Plugin specs (telescope, mason, conform, cmp)
-        ├── lsp.lua       # LSP configuration
-        └── treesitter.lua
+        ├── init.lua      # Plugin specs (telescope, mason, treesitter, conform, cmp)
+        └── lsp.lua       # LSP configuration
 ```
 
 **Key features:**
@@ -232,7 +231,7 @@ dotfiles/
 │       ├── init.lua
 │       └── lua/
 │           ├── core/       # options, keymaps, autocmds
-│           └── plugins/    # plugin specs, lsp, treesitter
+│           └── plugins/    # plugin specs, lsp
 ├── gnupg/                  # GnuPG configuration
 ├── alacritty.toml          # Alacritty terminal config
 ├── tmux.conf               # Tmux configuration (tmux 3.6+)
