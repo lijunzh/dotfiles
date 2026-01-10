@@ -257,11 +257,6 @@ hide_when_typing = true
 
 # Mouse bindings (defined in [[mouse.bindings]] sections below)
 
-# URL launcher
-[mouse.hints]
-launcher = { program = "open" }
-modifiers = "Command"
-
 ################################################################################
 # Keyboard Bindings
 ################################################################################
@@ -422,19 +417,24 @@ highlight_damage = false
 # Use preferential rendering (OpenGL only)
 prefer_egl = false
 
+
+
 ################################################################################
-# Shell
+# Terminal
 ################################################################################
-# Uncomment to auto-start tmux on launch
-# [shell]
+[terminal]
+# Shell program and arguments
+# You can set shell.program to the path of your favorite shell
+# [terminal.shell]
 # program = "/bin/zsh"
 # args = ["--login", "-c", "tmux attach -t default || tmux new -s default"]
 
-################################################################################
-# Working Directory
-################################################################################
-# Directory the shell is started in
-# working_directory = "None"
+# OSC 52 clipboard interaction
+# - "Disabled": Don't allow programs to access clipboard
+# - "OnlyCopy": Allow copying to clipboard
+# - "OnlyPaste": Allow pasting from clipboard
+# - "CopyPaste": Allow both
+osc52 = "OnlyCopy"
 
 ################################################################################
 # Hints
@@ -442,13 +442,18 @@ prefer_egl = false
 # Terminal hints can be used to find text or hyperlinks in the visible part
 # of the terminal and pipe them to other applications.
 
+[hints]
+# Keys used for hint labels
+alphabet = "jfkdls;ahgurieowpq"
+
 [[hints.enabled]]
 # Regex for URLs
 regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001f\u007f-\u009f<>\"\\s{-}\\^⟨⟩`]+"
 command = "open"
 post_processing = true
-mouse.enabled = true
-mouse.mods = "Command"
+persist = false
+mouse = { enabled = true, mods = "Command" }
+binding = { key = "O", mods = "Control|Shift" }
 
 ################################################################################
 # Mouse Bindings
