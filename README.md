@@ -89,9 +89,9 @@ This will install the language servers and formatters defined in `config/nvim/lu
 ### Zsh
 - **Consolidated configuration**: All settings in `zshrc` (simplified from complex pre/main/post loading)
 - **Functions**: `g` (git status/git shortcut) and `mcd` (mkdir + cd) defined inline in `zshrc`
+- **Completion**: `g` function completion defined inline with `compdef g=git`
 - **Aliases**: Common shell aliases in `aliases`
 - **Environment**: Minimal `zshenv` for environment variables
-- **Completion**: Single completion file for `g` function in `zsh/completion/_g`
 
 ### GnuPG
 - GPG configuration in `gnupg/` directory
@@ -107,9 +107,6 @@ dotfiles/
 ├── config/
 │   └── nvim/               # Neovim/NvChad configuration
 ├── gnupg/                  # GnuPG configuration
-├── zsh/
-│   └── completion/         # Zsh completion files
-│       └── _g              # Completion for g function
 ├── alacritty.toml          # Alacritty terminal config
 ├── tmux.conf               # Tmux configuration
 ├── gitconfig               # Git configuration

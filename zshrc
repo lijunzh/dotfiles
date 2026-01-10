@@ -66,7 +66,7 @@ export LESS=-r
 # ============================================================================
 
 # Load completion functions
-fpath=(~/.zsh/completion /usr/local/share/zsh/site-functions $fpath)
+fpath=(/usr/local/share/zsh/site-functions $fpath)
 
 # Completion; use cache if updated within 24h
 autoload -Uz compinit
@@ -78,6 +78,9 @@ fi
 
 # Disable zsh bundled function mtools command mcd which causes a conflict
 compdef -d mcd
+
+# Define completion for g function (use git's completion)
+compdef g=git
 
 # Completion styles
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'  # Case insensitive completion
