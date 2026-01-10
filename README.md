@@ -19,9 +19,11 @@ This repo is adapted from [thoughtbot/dotfiles](https://github.com/thoughtbot/do
   - Tmux setup for session management
   
 - **Git**: 
-  - Enhanced configuration with useful aliases
-  - Delta for improved diffs
+  - Enhanced configuration with useful aliases and modern defaults
+  - Delta for improved diffs with side-by-side view
   - GPG signing setup
+  - Conventional commit message template
+  - Comprehensive global gitignore
   
 - **CLI Tools**:
   - Modern replacements: bat, eza, ripgrep, fd, fzf
@@ -93,6 +95,118 @@ This will install the language servers and formatters defined in `config/nvim/lu
 - **Functions**: `g` (git status/git shortcut) and `mcd` (mkdir + cd)
 - **Environment**: Minimal `zshenv` for XDG base directories
 
+### Tmux
+- **Modern configuration** for tmux 3.6+
+- **Vi-style navigation**: `h/j/k/l` for pane selection
+- **Intuitive splits**: `Prefix v` or `Prefix |` for horizontal, `Prefix s` or `Prefix -` for vertical
+- **Smart defaults**: Windows/panes start at 1, preserve current directory
+- **Enhanced features**: 50K line history, undercurl support, true color
+
+#### Tmux Key Bindings
+**Prefix**: `Ctrl-b` (or `Ctrl-a` as secondary)
+
+| Keybinding | Action |
+|------------|--------|
+| `Prefix r` | Reload config |
+| `Prefix e` | Edit config |
+| `Prefix c` | New window (current directory) |
+| `Prefix C` | New window with rename |
+| `Prefix v` or `Prefix \|` | Split horizontal |
+| `Prefix s` or `Prefix -` | Split vertical |
+| `Prefix h/j/k/l` | Navigate panes |
+| `Prefix H/J/K/L` | Resize panes |
+| `Prefix z` | Toggle pane zoom |
+| `Prefix t` | Toggle status bar |
+| `Prefix C-l` | Clear screen + history |
+| `Prefix Enter` | Copy mode |
+
+**Copy Mode** (Vi-style):
+- `v` - Begin selection
+- `C-v` - Rectangle selection
+- `y` - Copy and exit
+- `H/L` - Start/end of line
+
+### Git
+- **Modern defaults**: `main` as default branch, `pull.rebase = true`, auto-setup remote tracking
+- **Enhanced diff**: Uses `delta` with side-by-side view and line numbers
+- **Better merges**: `zdiff3` conflict style for clearer conflict resolution
+- **Auto-correct**: Typos automatically corrected after 1 second
+- **Smart sorting**: Branches sorted by recent commits, tags by version
+
+#### Git Aliases
+**Quick Commands**:
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `git s` | `status -s` | Short status |
+| `git l` | `log --graph` | Graph log (20 commits) |
+| `git lg` | Pretty log | Colorful graph with author |
+| `git d` | `diff` | Show diff |
+| `git last` | Last commit | Show last commit with stats |
+
+**Workflow**:
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `git cm <msg>` | `commit -m` | Quick commit |
+| `git cam <msg>` | `commit -am` | Add all + commit |
+| `git ca` | Add all + commit | Interactive commit |
+| `git amend` | Amend commit | Fix last commit |
+| `git undo` | Reset soft | Undo last commit, keep changes |
+
+**Branch Management**:
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `git nb <name>` | `checkout -b` | New branch |
+| `git go <name>` | Smart checkout | Checkout or create branch |
+| `git current` | Current branch | Show current branch name |
+| `git branches` | List all | Show all branches |
+| `git dm` | Delete merged | Remove merged branches |
+| `git cleanup` | Prune branches | Delete branches removed on remote |
+
+**Search & Analysis**:
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `git fc <text>` | Find commits | Search by source code |
+| `git fm <text>` | Find commits | Search by commit message |
+| `git fb <commit>` | Find branches | Branches containing commit |
+| `git contributors` | Shortlog | List contributors with counts |
+
+**Stash**:
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `git stash-all` | Stash untracked | Stash everything including untracked |
+| `git stashes` | Pretty list | Show all stashes nicely formatted |
+
+**Other**:
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `git ignored` | List ignored | Show files ignored by git |
+| `git aliases` | List aliases | Show all git aliases |
+
+#### Git URL Shortcuts
+| Shortcut | Expands to | Example |
+|----------|------------|---------|
+| `gh:` | `git@github.com:` | `git clone gh:user/repo` |
+| `github:` | `git://github.com/` | `git clone github:user/repo` |
+| `gst:` | `git@gist.github.com:` | `git clone gst:user/gist-id` |
+| `gist:` | `git://gist.github.com/` | `git clone gist:user/gist-id` |
+
+#### Git Commit Template
+Uses conventional commit format. When you run `git commit`, you'll see a template with:
+- **Types**: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
+- **Format**: `<type>(<scope>): <subject>` (max 50 chars)
+- **Body**: Wrapped at 72 chars, explains WHAT and WHY
+- **Footer**: Issue references, breaking changes, co-authors
+
+Example:
+```
+feat(api): add JWT token validation
+
+Implement JWT token validation middleware to secure API endpoints.
+Uses the jsonwebtoken library for token verification.
+
+Fixes #123
+```
+
 ### GnuPG
 - GPG configuration in `gnupg/` directory
 - Agent configuration for GPG signing
@@ -101,17 +215,18 @@ This will install the language servers and formatters defined in `config/nvim/lu
 
 ```
 dotfiles/
-├── Brewfile                # Homebrew package definitions (root level)
+├── Brewfile                # Homebrew package definitions
 ├── install.sh              # Main installation script
 ├── rcrc                    # rcm configuration
+├── bin/                    # Custom scripts and utilities
 ├── config/
 │   └── nvim/               # Neovim/NvChad configuration
 ├── gnupg/                  # GnuPG configuration
 ├── alacritty.toml          # Alacritty terminal config
-├── tmux.conf               # Tmux configuration
-├── gitconfig               # Git configuration
-├── gitignore               # Global Git ignore patterns
-├── gitmessage              # Git commit message template
+├── tmux.conf               # Tmux configuration (tmux 3.6+)
+├── gitconfig               # Git configuration with modern defaults
+├── gitignore               # Global Git ignore (comprehensive)
+├── gitmessage              # Git commit template (conventional commits)
 ├── zshenv                  # Zsh environment variables (minimal)
 └── zshrc                   # Zsh configuration (all-in-one)
 ```
@@ -119,12 +234,60 @@ dotfiles/
 ## Customization
 
 To customize this setup:
-1. Edit `Brewfile` (in root directory) to add/remove Homebrew packages
-2. Modify `config/nvim/lua/configs/mason.lua` to change LSP/formatter installations
-3. Update `zshrc` for shell options, functions, keybindings, and aliases
-4. Create `~/.zshrc.local` for machine-specific customizations
-5. Adjust Alacritty settings in `alacritty.toml`
-6. Modify tmux settings in `tmux.conf`
+1. **Personal Git settings**: Create `~/.gitconfig.local`:
+   ```bash
+   [user]
+       name = Your Name
+       email = your.email@example.com
+       signingkey = YOUR_GPG_KEY_ID
+   ```
+2. **Homebrew packages**: Edit `Brewfile` to add/remove packages
+3. **Neovim LSP/formatters**: Modify `config/nvim/lua/configs/mason.lua`
+4. **Shell customizations**: Create `~/.zshrc.local` for machine-specific settings
+5. **Terminal settings**: Adjust `alacritty.toml` for Alacritty
+6. **Tmux settings**: Modify `tmux.conf` or create `~/.tmux.conf.local`
+7. **Git workflow**: Edit `gitmessage` to customize commit template
+
+## Quick Tips
+
+### Git Workflow
+```bash
+# Clone repos faster with shortcuts
+git clone gh:user/repo
+
+# Auto-correct typos (waits 1 second)
+git stauts  # Automatically becomes 'git status'
+
+# Quick commits
+git cm "feat: add new feature"
+git cam "fix: resolve bug"
+
+# View beautiful logs
+git lg
+git last
+
+# Clean up branches
+git cleanup  # Remove local branches deleted on remote
+git dm       # Delete branches already merged
+
+# Stash everything
+git stash-all
+git stashes  # Pretty list of stashes
+```
+
+### Tmux Workflow
+```bash
+# Start new session
+tmux new -s work
+
+# Inside tmux:
+# Prefix v        - Split right
+# Prefix s        - Split down
+# Prefix hjkl     - Navigate panes
+# Prefix z        - Zoom pane
+# Prefix t        - Toggle status bar
+# Prefix Enter    - Copy mode (then v to select, y to copy)
+```
 
 ## Troubleshooting
 
@@ -142,6 +305,16 @@ To customize this setup:
 1. Check `rcrc` configuration file
 2. Run `rcup -v` for verbose output
 3. Ensure you cloned to `~/repo/dotfiles` or update `rcrc` accordingly
+
+### Git delta not showing colors
+1. Install delta: `brew install git-delta`
+2. Verify in `~/.gitconfig`: `pager.diff = delta`
+3. Test with: `git diff` or `git log -p`
+
+### Tmux config not loading
+1. Reload config: `Prefix r` (or `tmux source ~/.tmux.conf`)
+2. Check tmux version: `tmux -V` (should be 3.0+)
+3. Kill and restart tmux server: `tmux kill-server && tmux`
 
 ## License
 
