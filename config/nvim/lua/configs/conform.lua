@@ -18,7 +18,7 @@ local options = {
 
 		rust = { "rustfmt" },
 
-		markdown = { "prettier" },
+		markdown = { "deno_fmt" },
 		sh = { "shfmt" },
 		yaml = { "yamlfmt" },
 	},
