@@ -125,7 +125,7 @@ mcd() {
 # ============================================================================
 
 # ls (using eza if available)
-type eza >/dev/null 2>&1 && alias ls="eza --icons --group-directories-first"
+command -v eza >/dev/null && alias ls="eza --icons --group-directories-first"
 alias ll="ls -alF"
 
 # Safe operations
@@ -138,7 +138,7 @@ alias df="df -h"
 alias -- -="cd -"
 
 # Editor
-type nvim >/dev/null 2>&1 && alias vim="nvim"
+command -v nvim >/dev/null && alias vim="nvim"
 
 # Utilities
 alias path='echo $PATH | tr -s ":" "\n"'
