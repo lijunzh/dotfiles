@@ -6,12 +6,12 @@ This repo is adapted from [thoughtbot/dotfiles](https://github.com/thoughtbot/do
 
 ## Features
 
-- **Neovim**: Configured with [NvChad](https://github.com/NvChad/NvChad) for a modern IDE experience
-  - LSP support via Mason (Python, Rust, Lua)
-  - LSP configurations with rust_analyzer (clippy integration) and lua_ls
-  - GitHub Copilot integration
-  - Formatting with conform.nvim (Prettier, deno_fmt for Markdown)
-  - Treesitter for improved syntax highlighting
+- **Neovim**: Pure Lua configuration (~840 lines total)
+  - LSP support via Mason (Rust, Python, Lua, Bash, YAML, JSON, LaTeX, C/C++)
+  - Treesitter for syntax highlighting and incremental selection
+  - Telescope for fuzzy finding (files, grep, buffers)
+  - Conform for code formatting
+  - Gruvbox colorscheme
   
 - **Terminal**: 
   - Custom Zsh configuration with plugins
@@ -68,25 +68,35 @@ source ~/.zshrc
 Then open Neovim and run:
 ```vim
 :Lazy sync
-:MasonInstallAll
 ```
 
-This will install the language servers and formatters defined in `config/nvim/lua/configs/mason.lua`:
-- **Language Servers**: rust_analyzer, pyright, lua_ls
-- **Formatters**: prettier (general formatting), deno (Markdown via deno_fmt), stylua (Lua formatting)
+Mason will automatically install LSP servers on first use. To manually install:
+```vim
+:Mason
+```
 
 ## Key Configurations
 
 ### Neovim
-- **LSP Config**: `config/nvim/lua/configs/lspconfig.lua`
-  - rust_analyzer with clippy integration and allFeatures enabled
-  - lua_ls with proper Neovim globals and diagnostics
-- **Mason**: `config/nvim/lua/configs/mason.lua`
-  - Ensures installation of core language tools
-- **Conform**: `config/nvim/lua/configs/conform.lua`
-  - Prettier for HTML, CSS, JSON, YAML, Markdown
-  - deno_fmt for Markdown (Obsidian workflow)
-  - stylua for Lua files
+Pure Lua configuration without frameworks (~840 lines):
+```
+config/nvim/
+├── init.lua              # Entry point, lazy.nvim bootstrap
+└── lua/
+    ├── core/
+    │   ├── options.lua   # Vim options
+    │   ├── keymaps.lua   # Keybindings
+    │   └── autocmds.lua  # Autocommands
+    └── plugins/
+        ├── init.lua      # Plugin specs (telescope, mason, conform, cmp)
+        ├── lsp.lua       # LSP configuration
+        └── treesitter.lua
+```
+
+**Key features:**
+- **LSP**: rust_analyzer (clippy), lua_ls, ruff, bashls, taplo, texlab, yamlls, jsonls, clangd
+- **Formatting**: stylua, ruff_format, rustfmt, shfmt, deno_fmt, yamlfmt, prettier
+- **Keybindings**: `<leader>ff` find files, `<leader>fg` grep, `<leader>fm` format, `gd` go to definition
 
 ### Zsh
 - **Single file configuration**: All settings, functions, and aliases in `zshrc` (~150 lines)
@@ -218,7 +228,11 @@ dotfiles/
 ├── install.sh              # Main installation script
 ├── rcrc                    # rcm configuration
 ├── config/
-│   └── nvim/               # Neovim/NvChad configuration
+│   └── nvim/               # Neovim configuration (pure Lua)
+│       ├── init.lua
+│       └── lua/
+│           ├── core/       # options, keymaps, autocmds
+│           └── plugins/    # plugin specs, lsp, treesitter
 ├── gnupg/                  # GnuPG configuration
 ├── alacritty.toml          # Alacritty terminal config
 ├── tmux.conf               # Tmux configuration (tmux 3.6+)
@@ -320,4 +334,5 @@ This repository is provided as-is for personal use. Feel free to fork and adapt 
 ## Acknowledgments
 
 - [thoughtbot/dotfiles](https://github.com/thoughtbot/dotfiles) - Original inspiration and rcm usage
-- [NvChad](https://github.com/NvChad/NvChad) - Neovim configuration framework
+- [lazy.nvim](https://github.com/folke/lazy.nvim) - Plugin manager
+- [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) - Colorscheme

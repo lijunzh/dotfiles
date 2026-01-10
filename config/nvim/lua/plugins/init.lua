@@ -1,100 +1,201 @@
----@type NvPluginSpec[]
+-- ============================================================================
+-- Plugin Specifications
+-- ============================================================================
+-- All plugins are managed by lazy.nvim
+-- Plugins are lazy-loaded by default
+
 return {
-	--------------------------------------- default plugins -----------------------------------------
-	{
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			{
-				-- snippet plugin
-				"L3MON4D3/LuaSnip",
-				config = function(_, opts)
-					require("luasnip").config.set_config(opts)
-					require("nvchad.configs.luasnip")
-				end,
-			},
-			{
-				"zbirenbaum/copilot.lua",
-				cmd = "Copilot",
-				event = "InsertEnter",
-				config = function()
-					require("copilot").setup({
-						suggestion = { enabled = false },
-						panel = { enabled = false },
-					})
-				end,
-			},
-			{
-				"zbirenbaum/copilot-cmp",
-				dependencies = { "zbirenbaum/copilot.lua" },
-				config = function()
-					require("copilot_cmp").setup()
-				end,
-			},
-		},
-		opts = require("configs.cmp"),
-	},
+    -- ========================================================================
+    -- Colorscheme
+    -- ========================================================================
 
-	{
-		"neovim/nvim-lspconfig",
-		config = function()
-			require("nvchad.configs.lspconfig").defaults()
-			require("configs.lspconfig")
-		end,
-	},
+    {
+        "ellisonleao/gruvbox.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("gruvbox").setup({
+                contrast = "hard",
+                italic = {
+                    strings = false,
+                    comments = true,
+                    operators = false,
+                },
+            })
+            vim.cmd.colorscheme("gruvbox")
+        end,
+    },
 
-	{
-		"stevearc/conform.nvim",
-		event = "BufWritePre",
-		opts = require("configs.conform"),
-	},
+    -- ========================================================================
+    -- Telescope (Fuzzy Finder)
+    -- ========================================================================
 
-	{
-		"nvim-treesitter/nvim-treesitter",
-		opts = require("configs.treesitter"),
-	},
+    {
+        "nvim-telescope/telescope.nvim",
+        cmd = "Telescope",
+        keys = {
+            { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+            { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
+            { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+            { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
+            { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
+        },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = "make",
+            },
+        },
+        config = function()
+            local telescope = require("telescope")
+            telescope.setup({
+                defaults = {
+                    prompt_prefix = " ",
+                    selection_caret = " ",
+                    path_display = { "truncate" },
+                    file_ignore_patterns = { "node_modules", ".git/" },
+                },
+                pickers = {
+                    find_files = {
+                        hidden = true,
+                    },
+                },
+            })
+            telescope.load_extension("fzf")
+        end,
+    },
 
-	{
-		"numToStr/Comment.nvim",
-		dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
-		config = function()
-			require("Comment").setup({
-				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-			})
-		end,
-	},
+    -- ========================================================================
+    -- Treesitter (Syntax Highlighting)
+    -- ========================================================================
 
-	--------------------------------------------- custom plugins ----------------------------------------------
-	-- smooth scroll
-	{
-		"karb94/neoscroll.nvim",
-		keys = { "<C-d>", "<C-u>" },
-		config = function()
-			require("neoscroll").setup()
-		end,
-	},
+    {
+        "nvim-treesitter/nvim-treesitter",
+        event = { "BufReadPost", "BufNewFile" },
+        build = ":TSUpdate",
+        config = function()
+            require("plugins.treesitter")
+        end,
+    },
 
-	-- dim inactive windows
-	{
-		"andreadev-it/shade.nvim",
-		config = function()
-			require("shade").setup({
-				exclude_filetypes = { "NvimTree" },
-			})
-		end,
-	},
+    -- ========================================================================
+    -- Mason (LSP/Tool Installer)
+    -- ========================================================================
 
-	-- pretty diagnostics panel
-	{
-		"folke/trouble.nvim",
-		cmd = { "Trouble", "TodoTrouble" },
-		dependencies = {
-			{
-				"folke/todo-comments.nvim",
-				opts = {},
-			},
-		},
-		config = function()
-			require("trouble").setup()
-		end,
-	},
+    {
+        "williamboman/mason.nvim",
+        cmd = "Mason",
+        build = ":MasonUpdate",
+        config = function()
+            require("mason").setup({
+                ui = {
+                    border = "rounded",
+                    icons = {
+                        package_installed = "✓",
+                        package_pending = "➜",
+                        package_uninstalled = "✗",
+                    },
+                },
+            })
+        end,
+    },
+
+    {
+        "williamboman/mason-lspconfig.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "neovim/nvim-lspconfig",
+        },
+        config = function()
+            require("plugins.lsp")
+        end,
+    },
+
+    -- ========================================================================
+    -- LSP Configuration
+    -- ========================================================================
+
+    {
+        "neovim/nvim-lspconfig",
+        lazy = true, -- Loaded by mason-lspconfig
+    },
+
+    -- ========================================================================
+    -- Conform (Formatting)
+    -- ========================================================================
+
+    {
+        "stevearc/conform.nvim",
+        event = "BufWritePre",
+        cmd = "ConformInfo",
+        keys = {
+            {
+                "<leader>fm",
+                function()
+                    require("conform").format({ async = true, lsp_fallback = true })
+                end,
+                desc = "Format buffer",
+            },
+        },
+        config = function()
+            require("conform").setup({
+                formatters_by_ft = {
+                    lua = { "stylua" },
+                    python = { "ruff_format" },
+                    rust = { "rustfmt" },
+                    sh = { "shfmt" },
+                    markdown = { "deno_fmt" },
+                    yaml = { "yamlfmt" },
+                    json = { "prettier" },
+                    css = { "prettier" },
+                    html = { "prettier" },
+                },
+                -- Uncomment to enable format on save
+                -- format_on_save = {
+                --     timeout_ms = 500,
+                --     lsp_fallback = true,
+                -- },
+            })
+        end,
+    },
+
+    -- ========================================================================
+    -- Completion (Optional - minimal setup)
+    -- ========================================================================
+
+    {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+        },
+        config = function()
+            local cmp = require("cmp")
+            cmp.setup({
+                completion = {
+                    completeopt = "menu,menuone,noselect",
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ["<C-n>"] = cmp.mapping.select_next_item(),
+                    ["<C-p>"] = cmp.mapping.select_prev_item(),
+                    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+                    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+                    ["<C-Space>"] = cmp.mapping.complete(),
+                    ["<C-e>"] = cmp.mapping.abort(),
+                    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+                    ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+                }),
+                sources = cmp.config.sources({
+                    { name = "nvim_lsp" },
+                    { name = "path" },
+                }, {
+                    { name = "buffer" },
+                }),
+            })
+        end,
+    },
 }

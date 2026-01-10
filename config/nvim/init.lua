@@ -1,36 +1,68 @@
+-- ============================================================================
+-- Neovim Configuration
+-- ============================================================================
+-- Pure Lua config without frameworks
+-- Structure:
+--   lua/core/options.lua   - Vim options
+--   lua/core/keymaps.lua   - Keybindings
+--   lua/core/autocmds.lua  - Autocommands
+--   lua/plugins/init.lua   - Plugin specifications
+--   lua/plugins/lsp.lua    - LSP configuration
+--   lua/plugins/treesitter.lua - Treesitter configuration
+
+-- ============================================================================
+-- Leader Key (must be set before plugins)
+-- ============================================================================
+
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
--- Base46 cache
-vim.g.base46_cache = vim.fn.stdpath("data") .. "/nvchad/base46/"
+-- ============================================================================
+-- Bootstrap lazy.nvim
+-- ============================================================================
 
--- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-	local repo = "https://github.com/folke/lazy.nvim.git"
-	vim.fn.system({ "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath })
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
--- lazy config
-local lazy_config = require("configs.lazy")
+-- ============================================================================
+-- Load Core Configuration
+-- ============================================================================
 
--- load plugins
-require("lazy").setup({
-	{
-		"NvChad/NvChad",
-		lazy = false,
-		import = "nvchad.plugins",
-	},
-	{ import = "plugins" },
-}, lazy_config)
+require("core.options")
+require("core.keymaps")
+require("core.autocmds")
 
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
+-- ============================================================================
+-- Load Plugins
+-- ============================================================================
 
-require("options")
-require("autocmds")
-require("commands")
-
-vim.schedule(function()
-	require("mappings")
-end)
+require("lazy").setup("plugins", {
+  defaults = { lazy = true },
+  install = { colorscheme = { "gruvbox" } },
+  checker = { enabled = false },
+  change_detection = { notify = false },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+})
