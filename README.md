@@ -30,7 +30,7 @@ This repo is adapted from [thoughtbot/dotfiles](https://github.com/thoughtbot/do
 
 ## Prerequisites
 
-* macOS system (Linux support removed in Phase 3)
+* macOS system
 * Install XCode Command Line Tools: `xcode-select --install`
 * Install [Homebrew](https://brew.sh/) and restart the shell
 * [Optional] Choose a [Nerd Font](https://www.nerdfonts.com/) in your terminal emulator. Fira Code Nerd Font will be installed by default via homebrew-cask-fonts.
@@ -72,31 +72,6 @@ Then open Neovim and run:
 This will install the language servers and formatters defined in `config/nvim/lua/configs/mason.lua`:
 - **Language Servers**: rust_analyzer, pyright, lua_ls
 - **Formatters**: prettier (general formatting), deno (Markdown via deno_fmt), stylua (Lua formatting)
-
-## Phase 3 Changes
-
-This repository has been streamlined to focus on macOS-only support with a simplified toolchain:
-
-### What Changed
-- **Platform Support**: Removed Linux support; macOS-only
-- **Package Manager**: Homebrew for system tools, Mason for LSP/formatter tools
-- **Python Tools**: Using `uv` instead of pyenv/poetry for faster Python workflows
-- **Markdown Formatting**: Using deno_fmt (via Mason) for Obsidian notes, Prettier for general formatting
-- **Font**: Changed from Fira Mono Nerd Font to Fira Code Nerd Font
-
-### What Was Removed
-- **Languages/Runtimes**: Node.js, Ruby, Go, Lua (system installs - using Mason for LSP tools instead)
-- **Web Dev Tools**: Biome, web-dev specific LSPs (focused on Python/Rust/Lua only)
-- **System Utils**: rsync, wget, tree, cmake, llvm
-- **Python Tools**: poetry, pyenv, pyenv-virtualenv (replaced with uv)
-- **Neovim Plugins**: peek.nvim (Markdown preview), markdown-related web LSPs
-- **Zsh Functions**: change-extension, envup, _git_delete_branch
-
-### What Was Kept
-- **Core Zsh Functions**: `g` (git status), `mcd` (mkdir + cd)
-- **GnuPG Configuration**: gnupg directory with gpg.conf and gpg-agent.conf
-- **rcm**: Still using rcm for dotfile management
-- **Core LSP Configs**: rust_analyzer and lua_ls configurations in lspconfig.lua
 
 ## Key Configurations
 
