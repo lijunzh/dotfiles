@@ -87,11 +87,11 @@ This will install the language servers and formatters defined in `config/nvim/lu
   - stylua for Lua files
 
 ### Zsh
-- **Consolidated configuration**: All settings in `zshrc` (simplified from complex pre/main/post loading)
-- **Functions**: `g` (git status/git shortcut) and `mcd` (mkdir + cd) defined inline in `zshrc`
-- **Completion**: `g` function completion defined inline with `compdef g=git`
-- **Aliases**: Common shell aliases in `aliases`
-- **Environment**: Minimal `zshenv` for environment variables
+- **Single file configuration**: All settings, functions, and aliases in `zshrc` (~130 lines)
+- **Minimal and native**: Relies on sensible defaults, removes redundant options
+- **Vi mode**: Fast transitions with essential keybindings
+- **Functions**: `g` (git status/git shortcut) and `mcd` (mkdir + cd)
+- **Environment**: Minimal `zshenv` for XDG base directories
 
 ### GnuPG
 - GPG configuration in `gnupg/` directory
@@ -112,9 +112,8 @@ dotfiles/
 ├── gitconfig               # Git configuration
 ├── gitignore               # Global Git ignore patterns
 ├── gitmessage              # Git commit message template
-├── aliases                 # Shell aliases
-├── zshenv                  # Zsh environment variables
-└── zshrc                   # Zsh configuration
+├── zshenv                  # Zsh environment variables (minimal)
+└── zshrc                   # Zsh configuration (all-in-one)
 ```
 
 ## Customization
@@ -122,11 +121,10 @@ dotfiles/
 To customize this setup:
 1. Edit `Brewfile` (in root directory) to add/remove Homebrew packages
 2. Modify `config/nvim/lua/configs/mason.lua` to change LSP/formatter installations
-3. Update `zshrc` for shell options, functions, and keybindings
-4. Update `aliases` for command aliases
-5. Create `~/.zshrc.local` or `~/.aliases.local` for machine-specific customizations
-6. Adjust Alacritty settings in `alacritty.toml`
-7. Modify tmux settings in `tmux.conf`
+3. Update `zshrc` for shell options, functions, keybindings, and aliases
+4. Create `~/.zshrc.local` for machine-specific customizations
+5. Adjust Alacritty settings in `alacritty.toml`
+6. Modify tmux settings in `tmux.conf`
 
 ## Troubleshooting
 
