@@ -11,7 +11,7 @@ brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
 # Developer tools
-brew "alacritty"
+cask "alacritty"
 brew "git"
 brew "git-delta"
 brew "gpg"
