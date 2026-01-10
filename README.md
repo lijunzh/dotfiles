@@ -89,11 +89,10 @@ This will install the language servers and formatters defined in `config/nvim/lu
   - stylua for Lua files
 
 ### Zsh
-- **Single file configuration**: All settings, functions, and aliases in `zshrc` (~130 lines)
+- **Single file configuration**: All settings, functions, and aliases in `zshrc` (~150 lines)
 - **Minimal and native**: Relies on sensible defaults, removes redundant options
 - **Vi mode**: Fast transitions with essential keybindings
 - **Functions**: `g` (git status/git shortcut) and `mcd` (mkdir + cd)
-- **Environment**: Minimal `zshenv` for XDG base directories
 
 ### Tmux
 - **Modern configuration** for tmux 3.6+
@@ -218,7 +217,6 @@ dotfiles/
 ├── Brewfile                # Homebrew package definitions
 ├── install.sh              # Main installation script
 ├── rcrc                    # rcm configuration
-├── bin/                    # Custom scripts and utilities
 ├── config/
 │   └── nvim/               # Neovim/NvChad configuration
 ├── gnupg/                  # GnuPG configuration
@@ -227,7 +225,6 @@ dotfiles/
 ├── gitconfig               # Git configuration with modern defaults
 ├── gitignore               # Global Git ignore (comprehensive)
 ├── gitmessage              # Git commit template (conventional commits)
-├── zshenv                  # Zsh environment variables (minimal)
 └── zshrc                   # Zsh configuration (all-in-one)
 ```
 
