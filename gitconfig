@@ -1,12 +1,19 @@
-# Referenc:
-# https://git-scm.com/docs/git-config#git-config-[tag]-[key]
+################################################################################
+# Lijun Zhu's Git Configuration
+################################################################################
+# Modern configuration for Git 2.x+
+# Reference: https://git-scm.com/docs/git-config
 
+################################################################################
+# Core Settings
+################################################################################
 
 [core]
+	# Global gitignore file
+	excludesFile = ~/.gitignore
 
 	# Make `git rebase` safer on macOS
 	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-	# https://git-scm.com/docs/git-config/2.17.0#git-config-coretrustctime
 	trustctime = false
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
@@ -14,20 +21,182 @@
 	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 
-	# For sharing git repo between Mac OS and Linux
-	# https://git-scm.com/docs/git-config/2.20.0#git-config-coreprecomposeUnicode
+	# For sharing git repo between macOS and Linux
 	precomposeUnicode = true
 
-	# Speed up commands involving untracked files such as `git status`.
-	# https://git-scm.com/docs/git-update-index#_untracked_cache
+	# Speed up commands involving untracked files such as `git status`
 	untrackedCache = true
 
-	# Set git diff default to tab=4 spaces
-	# https://stackoverflow.com/questions/39352644/how-to-change-tab-width-in-git-diff
-	# pager = less -x1,5
+	# Use default system editor if not set
+	editor = nvim
 
-	# global gitignore
-	excludesFile = ~/.gitignore
+################################################################################
+# User Settings
+################################################################################
+
+[user]
+	# Set these in ~/.gitconfig.local:
+	# [user]
+	#   name = Your Name
+	#   email = your.email@example.com
+	#   signingkey = YOUR_GPG_KEY
+
+################################################################################
+# Init Settings
+################################################################################
+
+[init]
+	# Use 'main' as the default branch name for new repositories
+	defaultBranch = main
+
+################################################################################
+# Commit Settings
+################################################################################
+
+[commit]
+	# GPG sign commits
+	gpgsign = true
+
+	# Use commit message template
+	template = ~/.gitmessage
+
+	# Show diff in commit message editor
+	verbose = true
+
+################################################################################
+# Tag Settings
+################################################################################
+
+[tag]
+	# GPG sign tags
+	gpgsign = true
+
+	# Sort tags by version number
+	sort = version:refname
+
+################################################################################
+# Push Settings
+################################################################################
+
+[push]
+	# Push current branch to upstream branch of same name
+	default = current
+
+	# Make `git push` push relevant annotated tags when pushing branches out
+	followTags = true
+
+	# GPG sign the push
+	gpgsign = if-asked
+
+	# Verify that all submodule commits are available on at least one remote
+	recurseSubmodules = check
+
+	# Automatically set up remote tracking
+	autoSetupRemote = true
+
+################################################################################
+# Pull Settings
+################################################################################
+
+[pull]
+	# Rebase instead of merge when pulling
+	rebase = true
+
+################################################################################
+# Fetch Settings
+################################################################################
+
+[fetch]
+	# Recursive fetch submodule
+	recurseSubmodules = on-demand
+
+	# Remove remote-tracking references that no longer exist on the remote
+	prune = true
+
+	# Prune tags that no longer exist on remote
+	pruneTags = true
+
+################################################################################
+# Merge Settings
+################################################################################
+
+[merge]
+	# Include summaries of merged commits in newly created merge commit messages
+	log = true
+
+	# Show common ancestor in conflict markers
+	conflictStyle = zdiff3
+
+################################################################################
+# Rebase Settings
+################################################################################
+
+[rebase]
+	# Automatically stash/unstash the working directory before/after rebases
+	autoStash = true
+
+	# Automatically squash commits marked with "fixup!" or "squash!"
+	autoSquash = true
+
+	# Show diffstat of what changed upstream since last rebase
+	stat = true
+
+################################################################################
+# Branch Settings
+################################################################################
+
+[branch]
+	# Sort branches by most recently committed
+	sort = -committerdate
+
+################################################################################
+# Status Settings
+################################################################################
+
+[status]
+	# Show submodule summary
+	submoduleSummary = true
+
+	# Show branch and tracking info in short format
+	showStash = true
+
+################################################################################
+# Diff Settings
+################################################################################
+
+[diff]
+	# Specify difftool
+	tool = vimdiff
+
+	# Detect copies as well as renames
+	renames = copy
+
+	# Long diff following git-submodule summary format
+	submodule = log
+
+	# Highlight moved lines with dimmed color
+	colorMoved = default
+
+	# Use better algorithm for diffs
+	algorithm = histogram
+
+	# Show prefix for better context
+	mnemonicPrefix = true
+
+[diff "bin"]
+	# Use `hexdump` to diff binary files
+	textconv = hexdump -v -C
+
+[difftool]
+	# Don't prompt before each invocation of the diff tool
+	prompt = false
+
+[difftool.latex]
+	cmd = latexdiff "$LOCAL" "$REMOTE"
+
+################################################################################
+# Delta (Better Diff Tool)
+################################################################################
 
 [pager]
 	diff = delta
@@ -36,20 +205,86 @@
 	show = delta
 
 [interactive]
-	iffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [delta]
 	features = side-by-side line-numbers decorations
 	whitespace-error-style = 22 reverse
+	navigate = true
+	light = false
 
 [delta "decorations"]
 	commit-decoration-style = bold yellow box ul
 	file-style = bold yellow ul
 	file-decoration-style = none
 
+################################################################################
+# Color Settings
+################################################################################
+
+[color]
+	# Use colors in Git commands that are capable of colored output
+	ui = auto
+
+[color "branch"]
+	current = yellow ul
+	local = white
+	remote = green dim bold
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red
+	new = green
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+################################################################################
+# Apply Settings
+################################################################################
+
+[apply]
+	# Detect whitespace errors when applying a patch
+	whitespace = fix
+
+################################################################################
+# Help Settings
+################################################################################
+
+[help]
+	# Automatically correct and execute mistyped commands after 1 second
+	autocorrect = 10
+
+################################################################################
+# Grep Settings
+################################################################################
+
+[grep]
+	# Show line numbers
+	lineNumber = true
+
+	# Use extended regular expressions
+	extendedRegexp = true
+
+################################################################################
+# Log Settings
+################################################################################
+
+[log]
+	# Show dates in relative format
+	date = relative
+
+	# Show abbreviated commit object as fallback
+	abbrevCommit = true
+
+################################################################################
+# Alias Definitions
+################################################################################
 
 [alias]
-
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
@@ -57,7 +292,6 @@
 	s = status -s
 
 	# Show the diff between the latest commit and the current state
-	# d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 	d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
 
 	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
@@ -95,7 +329,7 @@
 	# Interactive rebase with the given number of latest commits
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
 
-	# Remove the old tag with this name and tag the latest commit with it.
+	# Remove the old tag with this name and tag the latest commit with it
 	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
 
 	# Find branches containing commit
@@ -110,146 +344,70 @@
 	# Find commits by commit message
 	fm = "!f() { git log --pretty=format:'%C(yellow)%h	%Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
 
-	# Remove branches that have already been merged with master
-	# a.k.a. ‘delete merged’
+	# Remove branches that have already been merged with main
+	# a.k.a. 'delete merged'
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
 
-	# Merge GitHub pull request on top of the current branch or,
-	# if a branch name is specified, on top of the specified branch
-	mpr = "!f() { \
-		declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
-		declare branch=\"${2:-$currentBranch}\"; \
-		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-			git fetch origin refs/pull/$1/head:pr/$1 && \
-			git checkout -B $branch && \
-			git rebase $branch pr/$1 && \
-			git checkout -B $branch && \
-			git merge pr/$1 && \
-			git branch -D pr/$1 && \
-			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
-		fi \
-	}; f"
+	# Show commit log with full diff
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
+	# Show what got changed in the last commit
+	last = log -1 HEAD --stat
 
-[apply]
+	# Undo last commit but keep changes
+	undo = reset HEAD~1 --mixed
 
-	# Detect whitespace errors when applying a patch
-	whitespace = fix
+	# Show files ignored by git
+	ignored = ls-files -o -i --exclude-standard
 
+	# Clean up local branches that have been deleted on remote
+	cleanup = "!git fetch -p && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d"
 
-[push]
+	# Quick commit with message
+	cm = commit -m
 
-	# Safest centralized option
-	# https://git-scm.com/docs/git-config#git-config-pushdefault
-	default = simple
+	# Add all and commit with message
+	cam = commit -am
 
-	# Make `git push` push relevant annotated tags when pushing branches out.
-	# https://git-scm.com/docs/git-config#git-config-pushfollowTags
-	followTags = true
+	# Create a new branch and switch to it
+	nb = checkout -b
 
-	# GPG sign the push
-	# https://git-scm.com/docs/git-config#git-config-pushgpgSign
-	gpgsign = if-asked
+	# Show the current branch name
+	current = rev-parse --abbrev-ref HEAD
 
-	# Verify that all submodule commits that changed in the revisions to be
-	# pushed are available on at least one remote of the submodule.
-	# https://git-scm.com/docs/git-config#git-config-pushrecurseSubmodules
-	recursiveSubmodules = check
+	# Stash including untracked files
+	stash-all = stash save --include-untracked
 
+	# Show verbose stash list
+	stashes = stash list --pretty=format:'%C(yellow)%h %>(14)%Cgreen%cr %C(blue)%gs'
 
-[merge]
+################################################################################
+# URL Shortcuts
+################################################################################
 
-	# Only fast-forward merges are allowed
-	# https://git-scm.com/docs/git-config#git-config-mergeff
-	#ff = only
+[url "git@github.com:"]
+	insteadOf = gh:
+	pushInsteadOf = github:
+	pushInsteadOf = git://github.com/
 
-	# Verify commits has been signed by a valid key
-	# https://git-scm.com/docs/git-config#git-config-mergeverifySignatures
-	# verifySignatures = true
+[url "git://github.com/"]
+	insteadOf = github:
 
-	# Include summaries of merged commits in newly created merge commit messages
-	log = true
+[url "git@gist.github.com:"]
+	insteadOf = gst:
+	pushInsteadOf = gist:
+	pushInsteadOf = git://gist.github.com/
 
+[url "git://gist.github.com/"]
+	insteadOf = gist:
 
-[color]
+################################################################################
+# Local Configuration Override
+################################################################################
 
-	# Use colors in Git commands that are capable of colored output when
-	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-	ui = auto
-
-
-[color "branch"]
-
-	current = yellow ul
-	local = white
-	remote = green dim bold
-
-
-[color "diff"]
-
-	meta = yellow bold
-	frag = magenta bold
-	old = red
-	new = green
-
-
-[color "status"]
-
-	added = yellow
-	changed = green
-	untracked = cyan
-
-
-[commit]
-
-	gpgsign = true
-	template = ~/.gitmessage
-
-
-[tag]
-	
-	gpgsign = true
-
-
-[diff]
-
-	# Specify difftool
-	tool = vimdiff
-
-	# Detect copies as well as renames
-	renames = copy
-
-	# Long diff following git-submodule summary format
-	submodule = log
-
-	# Hight moved lines with dimmed color
-	colorMoved = dimmed_zebra
-
-
-[diff "bin"]
-
-	# Use `hexdump` to diff binary files
-	textconv = hexdump -v -C
-
-
-[difftool.latex]
-	cmd = latexdiff "$LOCAL" "$REMOTE"
-
-
-[fetch]
-
-	# Recursive fetch submodule
-	# https://git-scm.com/docs/git-config/2.17.0#git-config-fetchrecurseSubmodules
-	recurseSubmodules = on-demand
-
-	# Remove remote-tracking references that no longer exist on the remote
-	# https://git-scm.com/docs/git-config/2.17.0#git-config-coretrustctime
-	prune = true
-
-
+# Include local configuration (user info, machine-specific settings, etc.)
 [include]
-
 	path = ~/.gitconfig.local

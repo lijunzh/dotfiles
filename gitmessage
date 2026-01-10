@@ -1,16 +1,79 @@
+# <type>(<scope>): <subject>
+#
+# <body>
+#
+# <footer>
 
-
-# 50-character subject line
+# ============================================================================
+# Conventional Commit Format Guide
+# ============================================================================
 #
-# 72-character wrapped longer description. This should answer:
+# Types (pick one):
+#   feat:     A new feature
+#   fix:      A bug fix
+#   docs:     Documentation only changes
+#   style:    Changes that don't affect code meaning (white-space, formatting)
+#   refactor: Code change that neither fixes a bug nor adds a feature
+#   perf:     Code change that improves performance
+#   test:     Adding missing tests or correcting existing tests
+#   build:    Changes that affect the build system or external dependencies
+#   ci:       Changes to CI configuration files and scripts
+#   chore:    Other changes that don't modify src or test files
+#   revert:   Reverts a previous commit
 #
-# * Why was this change necessary?
-# * How does it address the problem?
-# * Are there any side effects?
+# Scope (optional):
+#   The scope provides additional context (e.g., component, module, file)
+#   Examples: api, ui, auth, database, config
 #
-# Include a link to the ticket, if any.
+# Subject:
+#   - Use imperative, present tense: "change" not "changed" nor "changes"
+#   - Don't capitalize first letter
+#   - No period (.) at the end
+#   - Maximum 50 characters
 #
-# Add co-authors if you worked on this code with others:
+# Body (optional):
+#   - Wrap at 72 characters
+#   - Explain WHAT and WHY, not HOW
+#   - Use imperative, present tense
+#   - Can include multiple paragraphs
 #
-# Co-authored-by: Full Name <email@example.com>
-# Co-authored-by: Full Name <email@example.com>
+#   Answer these questions:
+#   * Why was this change necessary?
+#   * How does it address the problem?
+#   * Are there any side effects?
+#
+# Footer (optional):
+#   - Reference issues: Fixes #123, Closes #456, Refs #789
+#   - Breaking changes: BREAKING CHANGE: description
+#   - Co-authors: Co-authored-by: Name <email@example.com>
+#
+# ============================================================================
+# Examples:
+# ============================================================================
+#
+# feat(auth): add JWT token validation
+#
+# Implement JWT token validation middleware to secure API endpoints.
+# Uses the jsonwebtoken library for token verification.
+#
+# Fixes #123
+#
+# ----------------------------------------------------------------------------
+#
+# fix(api): handle null pointer exception in user service
+#
+# Add null check before accessing user properties to prevent crashes
+# when user data is incomplete.
+#
+# Fixes #456
+#
+# ----------------------------------------------------------------------------
+#
+# feat!: remove deprecated API endpoints
+#
+# BREAKING CHANGE: The /api/v1/old-endpoint has been removed.
+# Use /api/v2/new-endpoint instead.
+#
+# Refs #789
+#
+# ============================================================================
