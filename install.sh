@@ -16,50 +16,24 @@ fi
 # Homebrew
 ################################################################################
 if ! command -v brew &> /dev/null; then
-  echo "Error: Homebrew is required. Install it from https://brew.sh/"
-  exit 1
+  echo "Homebrew not found. Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  # Add Homebrew to PATH for Apple Silicon Macs
+  if [[ -f "/opt/homebrew/bin/brew" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
+
+  echo "Homebrew installed successfully!"
+else
+  echo "Homebrew already installed."
 fi
 
 echo "Updating Homebrew..."
 brew update
 
-# Basic shell utilities
-echo "Installing basic shell utilities..."
-brew install \
-  bat \
-  eza \
-  fd \
-  fzf \
-  htop \
-  rcm \
-  ripgrep \
-  rsync \
-  tree \
-  wget \
-  zsh-completions \
-  zsh-syntax-highlighting \
-  starship
-
-# Developer tools
-echo "Installing developer tools..."
-brew install \
-  alacritty \
-  cmake \
-  git \
-  git-delta \
-  gpg \
-  llvm \
-  neovim \
-  pinentry-mac \
-  poetry \
-  pre-commit \
-  pyenv \
-  pyenv-virtualenv \
-  tmux
-
-# Font
-echo "Installing Nerd Fonts..."
-brew install --cask font-fira-mono-nerd-font
+echo "Installing packages from Brewfile..."
+brew bundle --file=Brewfile
 
 ################################################################################
 # Rust
@@ -68,6 +42,9 @@ echo "Setting up Rust..."
 if ! command -v rustup &> /dev/null; then
   echo "Installing Rust via rustup..."
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+  # Source cargo environment
+  source "$HOME/.cargo/env"
 else
   echo "Updating existing Rust installation..."
   rustup update
