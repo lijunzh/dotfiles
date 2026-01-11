@@ -76,44 +76,30 @@ return {
         lazy = false,
         priority = 500,
         build = ":TSUpdate",
-        main = "nvim-treesitter.configs",
-        opts = {
-            ensure_installed = {
-                "bash",
-                "c",
-                "css",
-                "html",
-                "json",
-                "lua",
-                "markdown",
-                "markdown_inline",
-                "python",
-                "rust",
-                "toml",
-                "vim",
-                "vimdoc",
-                "yaml",
-            },
-            sync_install = false,
-            auto_install = true,
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-            },
-            indent = {
-                enable = true,
-                disable = { "python" },
-            },
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "gnn",
-                    node_incremental = "grn",
-                    scope_incremental = "grc",
-                    node_decremental = "grm",
-                },
-            },
-        },
+        config = function()
+            -- New nvim-treesitter main branch API
+            -- Auto-install parsers
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function()
+                    pcall(vim.treesitter.start)
+                end,
+            })
+
+            -- Install parsers for common languages
+            local parsers = {
+                "bash", "c", "css", "html", "json", "lua",
+                "markdown", "markdown_inline", "python",
+                "rust", "toml", "vim", "vimdoc", "yaml",
+            }
+
+            -- Install parsers if not already installed
+            for _, parser in ipairs(parsers) do
+                local ok, _ = pcall(vim.treesitter.language.inspect, parser)
+                if not ok then
+                    pcall(vim.cmd, "TSInstall " .. parser)
+                end
+            end
+        end,
     },
 
     -- ========================================================================
