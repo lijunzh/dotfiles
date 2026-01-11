@@ -75,6 +75,7 @@ return {
         lazy = false,
         priority = 500,
         build = ":TSUpdate",
+        main = "nvim-treesitter.configs",
         opts = {
             ensure_installed = {
                 "bash",
@@ -112,14 +113,6 @@ return {
                 },
             },
         },
-        config = function(_, opts)
-            local ok, configs = pcall(require, "nvim-treesitter.configs")
-            if not ok then
-                vim.notify("nvim-treesitter not ready, run :TSUpdate", vim.log.levels.WARN)
-                return
-            end
-            configs.setup(opts)
-        end,
     },
 
     -- ========================================================================
