@@ -69,29 +69,22 @@ return {
 
     {
         "nvim-treesitter/nvim-treesitter",
-        branch = "main",
-        lazy = false,
+        branch = "master",
+        event = { "BufReadPre", "BufNewFile" },
         priority = 500,
+        cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
         build = ":TSUpdate",
-        config = function()
-            -- Auto-enable treesitter highlighting
-            vim.api.nvim_create_autocmd("FileType", {
-                callback = function()
-                    pcall(vim.treesitter.start)
-                end,
-            })
-
-            -- Install common parsers
-            local parsers = {
+        opts = {
+            ensure_installed = {
                 "bash", "c", "css", "html", "json", "lua",
                 "markdown", "markdown_inline", "python",
                 "rust", "toml", "vim", "vimdoc", "yaml",
-            }
-            for _, parser in ipairs(parsers) do
-                if not pcall(vim.treesitter.language.inspect, parser) then
-                    pcall(vim.cmd, "TSInstall " .. parser)
-                end
-            end
+            },
+            highlight = { enable = true, use_languagetree = true },
+            indent = { enable = true },
+        },
+        config = function(_, opts)
+          require("nvim-treesitter.configs").setup(opts)
         end,
     },
 
@@ -119,16 +112,41 @@ return {
     },
 
     {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        lazy = false,
+        priority = 899,
+        dependencies = { "williamboman/mason.nvim" },
+        config = function()
+            require("mason-tool-installer").setup({
+                ensure_installed = {
+                    -- LSPs
+                    "lua_ls",
+                    "rust_analyzer",
+                    "ruff",
+                    "bashls",
+                    "taplo",
+                    "texlab",
+                    "yamlls",
+                    "jsonls",
+                    "clangd",
+                    -- Formatters
+                    "stylua",
+                    "shfmt",
+                    "yamlfmt",
+                    "prettier",
+                    "deno",
+                },
+            })
+        end,
+    },
+
+    {
         "williamboman/mason-lspconfig.nvim",
         lazy = false,
         priority = 899,
         dependencies = { "williamboman/mason.nvim" },
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = {
-                    "lua_ls", "rust_analyzer", "ruff", "bashls",
-                    "taplo", "texlab", "yamlls", "jsonls", "clangd",
-                },
                 automatic_installation = true,
             })
         end,
@@ -150,19 +168,19 @@ return {
             -- Diagnostic configuration
             vim.diagnostic.config({
                 virtual_text = { prefix = "●", spacing = 4 },
-                signs = true,
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = "✘",
+                        [vim.diagnostic.severity.WARN] = "▲",
+                        [vim.diagnostic.severity.HINT] = "⚑",
+                        [vim.diagnostic.severity.INFO] = "»",
+                    },
+                },
                 underline = true,
                 update_in_insert = false,
                 severity_sort = true,
                 float = { border = "rounded", source = "always" },
             })
-
-            -- Diagnostic signs
-            local signs = { Error = " ", Warn = " ", Hint = "󰌵 ", Info = " " }
-            for type, icon in pairs(signs) do
-                local hl = "DiagnosticSign" .. type
-                vim.fn.sign_define(hl, { text = icon, texthl = hl })
-            end
 
             -- LSP keymaps via LspAttach autocmd (Neovim 0.11+ native approach)
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -250,6 +268,48 @@ return {
                     json = { "prettier" },
                     css = { "prettier" },
                     html = { "prettier" },
+                },
+            })
+        end,
+    },
+
+    -- ========================================================================
+    -- Git Integration
+    -- ========================================================================
+
+    {
+        "lewis6991/gitsigns.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("gitsigns").setup({
+                signs = {
+                    add = { text = "│" },
+                    change = { text = "│" },
+                    delete = { text = "_" },
+                    topdelete = { text = "‾" },
+                    changedelete = { text = "~" },
+                    untracked = { text = "┆" },
+                },
+            })
+        end,
+    },
+
+    -- ========================================================================
+    -- Status Line
+    -- ========================================================================
+
+    { "nvim-tree/nvim-web-devicons", lazy = true },
+
+    {
+        "nvim-lualine/lualine.nvim",
+        lazy = false,
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require("lualine").setup({
+                options = {
+                    theme = "gruvbox",
+                    component_separators = "|",
+                    section_separators = "",
                 },
             })
         end,
