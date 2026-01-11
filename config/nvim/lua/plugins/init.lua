@@ -72,7 +72,8 @@ return {
 
     {
         "nvim-treesitter/nvim-treesitter",
-        event = { "BufReadPost", "BufNewFile", "BufNewFile" },
+        lazy = false,
+        priority = 500,
         build = ":TSUpdate",
         opts = {
             ensure_installed = {
@@ -112,7 +113,12 @@ return {
             },
         },
         config = function(_, opts)
-            require("nvim-treesitter.configs").setup(opts)
+            local ok, configs = pcall(require, "nvim-treesitter.configs")
+            if not ok then
+                vim.notify("nvim-treesitter not ready, run :TSUpdate", vim.log.levels.WARN)
+                return
+            end
+            configs.setup(opts)
         end,
     },
 
