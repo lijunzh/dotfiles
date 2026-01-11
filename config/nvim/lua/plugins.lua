@@ -135,6 +135,7 @@ return {
                     "deno",
                 },
             })
+            vim.cmd("MasonToolsUpdate")
         end,
     },
 

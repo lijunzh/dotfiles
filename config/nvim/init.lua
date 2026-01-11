@@ -119,7 +119,7 @@ require("autocmds")
 require("lazy").setup("plugins", {
     defaults = { lazy = true },
     install = { colorscheme = { "gruvbox" } },
-    checker = { enabled = false },
+    checker = { enabled = true },
     change_detection = { notify = false },
     performance = {
         rtp = {
