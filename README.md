@@ -70,8 +70,8 @@ Then open Neovim and run:
 :Lazy sync
 ```
 
-LSP servers will be installed automatically by Mason on first launch.
-To manually manage servers:
+LSP servers, formatters, and linters will be installed automatically by Mason on first launch.
+To manually manage tools:
 ```vim
 :Mason
 ```
@@ -220,38 +220,35 @@ Fixes #123
 
 ```
 dotfiles/
-├── Brewfile                # Homebrew package definitions
-├── install.sh              # Main installation script
-├── rcrc                    # rcm configuration
+├── Brewfile                 # Homebrew package definitions
+├── install.sh               # Main installation script
+├── rcrc                     # rcm configuration
 ├── config/
-│   └── nvim/               # Neovim configuration (pure Lua)
-│       ├── init.lua        # Entry point + options
+│   └── nvim/                # Neovim configuration (pure Lua)
+│       ├── init.lua         # Entry point + options
 │       └── lua/
 │           ├── keymaps.lua
 │           ├── autocmds.lua
-│           └── plugins.lua # All plugins + LSP
-├── gnupg/                  # GnuPG configuration
-├── alacritty.toml          # Alacritty terminal config
-├── tmux.conf               # Tmux configuration (tmux 3.6+)
-├── gitconfig               # Git configuration with modern defaults
-├── gitignore               # Global Git ignore (comprehensive)
-├── gitmessage              # Git commit template (conventional commits)
-└── zshrc                   # Zsh configuration (all-in-one)
+│           └── plugins.lua  # All plugins + LSP
+├── host-HOSTNAME/           # Machine-specific configuration (gitconfig_local)
+├── gnupg/                   # GnuPG configuration
+├── alacritty.toml           # Alacritty terminal config
+├── tmux.conf                # Tmux configuration (tmux 3.6+)
+├── gitconfig                # Git configuration with modern defaults
+├── gitignore                # Global Git ignore (comprehensive)
+├── gitmessage               # Git commit template (conventional commits)
+└── zshrc                    # Zsh configuration (all-in-one)
 ```
 
 ## Customization
 
 To customize this setup:
-1. **Personal Git settings**: Create `~/.gitconfig.local`:
-   ```bash
-   [user]
-       name = Your Name
-       email = your.email@example.com
-       signingkey = YOUR_GPG_KEY_ID
-   ```
+1. **Machine-Specific Settings**: This repo uses `rcm` host detection. Create a directory named `host-<HOSTNAME>` in the root of the repo.
+   - Example: `host-work-macbook/gitconfig_local` containing specific user email or GPG key.
+   - `rcm` automatically links files in host directories over shared config.
 2. **Homebrew packages**: Edit `Brewfile` to add/remove packages
-3. **Neovim LSP/formatters**: Modify `config/nvim/lua/configs/mason.lua`
-4. **Shell customizations**: Create `~/.zshrc.local` for machine-specific settings
+3. **Neovim LSP/formatters**: Modify `ensure_installed` list in `config/nvim/lua/plugins.lua`
+4. **Shell customizations**: Edit `zshrc` directly or use `zshrc_local` if needed (though repo uses shared config)
 5. **Terminal settings**: Adjust `alacritty.toml` for Alacritty
 6. **Tmux settings**: Modify `tmux.conf` or create `~/.tmux.conf.local`
 7. **Git workflow**: Edit `gitmessage` to customize commit template
@@ -300,7 +297,7 @@ tmux new -s work
 ## Troubleshooting
 
 ### Neovim LSP not working
-1. Ensure Mason tools are installed: `:MasonInstallAll` in Neovim
+1. Tools are installed automatically by `mason-tool-installer`. Check status with `:Mason`
 2. Check LSP status: `:LspInfo`
 3. Verify Mason installations: `:Mason`
 
