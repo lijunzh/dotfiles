@@ -94,8 +94,7 @@ return {
 
     {
         "williamboman/mason.nvim",
-        lazy = false,
-        priority = 900,
+        cmd = "Mason",
         build = ":MasonUpdate",
         config = function()
             require("mason").setup({
@@ -113,8 +112,7 @@ return {
 
     {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
-        lazy = false,
-        priority = 899,
+        event = "VeryLazy",
         dependencies = { "williamboman/mason.nvim" },
         config = function()
             require("mason-tool-installer").setup({
@@ -142,8 +140,7 @@ return {
 
     {
         "williamboman/mason-lspconfig.nvim",
-        lazy = false,
-        priority = 899,
+        event = { "BufReadPre", "BufNewFile" },
         dependencies = { "williamboman/mason.nvim" },
         config = function()
             require("mason-lspconfig").setup({
@@ -158,8 +155,7 @@ return {
 
     {
         "neovim/nvim-lspconfig",
-        lazy = false,
-        priority = 898,
+        event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
@@ -302,7 +298,7 @@ return {
 
     {
         "nvim-lualine/lualine.nvim",
-        lazy = false,
+        event = "VeryLazy",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
             require("lualine").setup({
