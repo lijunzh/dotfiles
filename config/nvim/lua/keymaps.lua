@@ -8,10 +8,7 @@ local map = vim.keymap.set
 -- General
 -- ============================================================================
 
--- Better command mode entry
 map("n", ";", ":", { desc = "Enter command mode" })
-
--- Exit insert mode
 map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
 -- Save and quit
@@ -65,32 +62,17 @@ map("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
 map("v", "p", '"_dP', { desc = "Paste without yanking" })
 
 -- ============================================================================
--- Plugins
+-- Diagnostics
 -- ============================================================================
 
--- lazy.nvim
-map("n", "<C-s>", "<cmd>Lazy sync<cr>", { desc = "Update plugins" })
-
--- Format (conform)
-map("n", "<leader>fm", function()
-    require("conform").format({ async = true, lsp_fallback = true })
-end, { desc = "Format buffer" })
-
--- Telescope
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
-map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
-map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find buffers" })
-map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Help tags" })
-map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", { desc = "Recent files" })
-
--- LSP keymaps (set in lsp.lua on_attach, but define leader maps here)
-map("n", "<leader>ld", "<cmd>Telescope lsp_definitions<cr>", { desc = "Go to definition" })
-map("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>", { desc = "Find references" })
-map("n", "<leader>li", "<cmd>Telescope lsp_implementations<cr>", { desc = "Go to implementation" })
-map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Document symbols" })
-
--- Diagnostics
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
 map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic" })
 map("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Diagnostic list" })
+
+-- ============================================================================
+-- Plugin Keymaps (lazy-loaded with plugins)
+-- ============================================================================
+
+-- lazy.nvim
+map("n", "<C-s>", "<cmd>Lazy sync<cr>", { desc = "Update plugins" })

@@ -5,7 +5,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
--- Create augroups
 local general = augroup("General", { clear = true })
 local filetypes = augroup("Filetypes", { clear = true })
 
@@ -152,7 +151,6 @@ autocmd("FileType", {
 
 vim.g.autosave = false
 
--- Autosave on text change
 autocmd({ "InsertLeave", "TextChanged" }, {
     group = general,
     nested = true,
@@ -165,7 +163,6 @@ autocmd({ "InsertLeave", "TextChanged" }, {
     desc = "Autosave on text change",
 })
 
--- Toggle autosave command
 vim.api.nvim_create_user_command("AsToggle", function()
     vim.g.autosave = not vim.g.autosave
     local status = vim.g.autosave and "enabled" or "disabled"

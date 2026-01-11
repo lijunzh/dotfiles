@@ -1,14 +1,11 @@
 -- ============================================================================
 -- Neovim Configuration
 -- ============================================================================
--- Pure Lua config without frameworks
--- Structure:
---   lua/core/options.lua   - Vim options
---   lua/core/keymaps.lua   - Keybindings
---   lua/core/autocmds.lua  - Autocommands
---   lua/plugins/init.lua   - Plugin specifications
---   lua/plugins/lsp.lua    - LSP configuration
---   lua/plugins/treesitter.lua - Treesitter configuration
+-- Pure Lua config - simplified structure
+--   init.lua        - Entry point + options
+--   lua/keymaps.lua - Keybindings
+--   lua/autocmds.lua - Autocommands
+--   lua/plugins.lua - Plugin specifications + LSP
 
 -- ============================================================================
 -- Leader Key (must be set before plugins)
@@ -16,6 +13,80 @@
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+-- ============================================================================
+-- Options
+-- ============================================================================
+
+local opt = vim.opt
+
+-- General
+opt.mouse = "a"
+opt.clipboard = "unnamedplus"
+opt.swapfile = false
+opt.undofile = true
+opt.updatetime = 250
+opt.timeoutlen = 300
+
+-- Tabs and indentation
+opt.tabstop = 8
+opt.shiftwidth = 8
+opt.softtabstop = 8
+opt.expandtab = false
+
+-- Scrolling
+opt.scrolloff = 8
+opt.sidescrolloff = 8
+
+-- Backspace behavior
+opt.backspace = ""
+
+-- Search
+opt.ignorecase = true
+opt.smartcase = true
+opt.hlsearch = true
+opt.incsearch = true
+
+-- Splits
+opt.splitbelow = true
+opt.splitright = true
+
+-- Appearance
+opt.number = true
+opt.relativenumber = true
+opt.cursorline = true
+opt.signcolumn = "yes"
+opt.termguicolors = true
+opt.showmode = false
+opt.showmatch = true
+
+-- Line wrapping
+opt.wrap = false
+opt.linebreak = true
+opt.showbreak = "↪"
+
+-- Whitespace characters
+opt.list = true
+opt.listchars = {
+    tab = "→ ",
+    eol = "¬",
+    trail = "⋅",
+    extends = "❯",
+    precedes = "❮",
+    space = "·",
+}
+
+-- Text width
+opt.textwidth = 79
+opt.colorcolumn = "+1"
+
+-- Completion
+opt.completeopt = { "menu", "menuone", "noselect" }
+opt.pumheight = 10
+
+-- Statusline (minimal native)
+opt.laststatus = 2
+opt.statusline = " %f %m%r%h%w%=%y [%l/%L, %c] "
 
 -- ============================================================================
 -- Bootstrap lazy.nvim
@@ -35,20 +106,17 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- ============================================================================
--- Load Core Configuration
+-- Load Modules
 -- ============================================================================
 
-require("core.options")
-require("core.keymaps")
-require("core.autocmds")
+require("keymaps")
+require("autocmds")
 
 -- ============================================================================
 -- Load Plugins
 -- ============================================================================
 
-require("lazy").setup({
-    { import = "plugins.init" },
-}, {
+require("lazy").setup("plugins", {
     defaults = { lazy = true },
     install = { colorscheme = { "gruvbox" } },
     checker = { enabled = false },

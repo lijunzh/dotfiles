@@ -79,18 +79,14 @@ To manually manage servers:
 ## Key Configurations
 
 ### Neovim
-Pure Lua configuration without frameworks (~840 lines):
+Pure Lua configuration (~650 lines across 4 files):
 ```
 config/nvim/
-├── init.lua              # Entry point, lazy.nvim bootstrap
+├── init.lua          # Entry point + options (~140 lines)
 └── lua/
-    ├── core/
-    │   ├── options.lua   # Vim options
-    │   ├── keymaps.lua   # Keybindings
-    │   └── autocmds.lua  # Autocommands
-    └── plugins/
-        ├── init.lua      # Plugin specs (telescope, mason, treesitter, conform, cmp)
-        └── lsp.lua       # LSP configuration
+    ├── keymaps.lua   # Keybindings (~80 lines)
+    ├── autocmds.lua  # Autocommands (~170 lines)
+    └── plugins.lua   # All plugins + LSP (~260 lines)
 ```
 
 **Key features:**
@@ -229,10 +225,11 @@ dotfiles/
 ├── rcrc                    # rcm configuration
 ├── config/
 │   └── nvim/               # Neovim configuration (pure Lua)
-│       ├── init.lua
+│       ├── init.lua        # Entry point + options
 │       └── lua/
-│           ├── core/       # options, keymaps, autocmds
-│           └── plugins/    # plugin specs, lsp
+│           ├── keymaps.lua
+│           ├── autocmds.lua
+│           └── plugins.lua # All plugins + LSP
 ├── gnupg/                  # GnuPG configuration
 ├── alacritty.toml          # Alacritty terminal config
 ├── tmux.conf               # Tmux configuration (tmux 3.6+)
