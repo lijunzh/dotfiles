@@ -1,0 +1,8 @@
+[user]
+	name = Lijun Zhu
+	email = lijun.zhu@work-email.com
+	# signingkey = YOUR_WORK_GPG_KEY
+
+[gitlab]
+	# If your work uses GitLab or GHE
+	# user = lijun.zhu

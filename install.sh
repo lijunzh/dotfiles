@@ -54,7 +54,7 @@ fi
 # Dotfiles
 ################################################################################
 echo "Installing dotfiles with rcup..."
-rcup -d . -v
+RCRC="./rcrc" rcup -d . -v
 
 echo "==== Installation complete! ===="
 echo ""

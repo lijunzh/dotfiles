@@ -154,5 +154,5 @@ eval "$(starship init zsh)"
 # ============================================================================
 
 # Source local configuration files if they exist
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
-[[ -f ~/.aliases.local ]] && source ~/.aliases.local
+[[ -f ~/.zshrc_local ]] && source ~/.zshrc_local
+[[ -f ~/.aliases_local ]] && source ~/.aliases_local

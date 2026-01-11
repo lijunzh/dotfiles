@@ -35,7 +35,7 @@
 ################################################################################
 
 [user]
-	# Set these in ~/.gitconfig.local:
+	# Set these in ~/.gitconfig_local:
 	# [user]
 	#   name = Your Name
 	#   email = your.email@example.com
@@ -410,4 +410,4 @@
 
 # Include local configuration (user info, machine-specific settings, etc.)
 [include]
-	path = ~/.gitconfig.local
+	path = ~/.gitconfig_local

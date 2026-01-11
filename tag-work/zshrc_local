@@ -1,0 +1,9 @@
+# Work Zsh Configuration
+
+# Export work environment variables
+export WORK_DIR="$HOME/work"
+export GOPRIVATE="github.com/my-company/*"
+
+# Aliases specific to work
+alias w="cd $WORK_DIR"
+alias vpn="sudo openconnect --background --user=lijun vpn.company.com"

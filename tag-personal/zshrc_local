@@ -1,0 +1,8 @@
+# Personal Zsh Configuration
+
+# Export personal environment variables
+export HOME_MAC="mac-studio"
+
+# Aliases specific to home usage
+alias home="cd ~/repo/dotfiles"
+alias nas="ssh admin@nas.local"
