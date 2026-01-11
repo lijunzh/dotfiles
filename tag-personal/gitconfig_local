@@ -1,7 +1,7 @@
 [user]
 	name = Lijun Zhu
-	email = lijun.zhu@gmail.com
-	# signingkey = YOUR_PERSONAL_GPG_KEY
+	email = gatechzhu@gmail.com
+	signingkey = 43C09511999CFB50
 
 [github]
 	user = lijunzh

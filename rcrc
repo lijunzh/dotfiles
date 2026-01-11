@@ -2,12 +2,14 @@ EXCLUDES="README*.md LICENSE install.sh Brewfile"
 DOTFILES_DIRS="$HOME/repo/dotfiles"
 
 # Configure tags based on hostname
-# This allows applying 'tag-work' or 'tag-personal' directories automatically
 HOSTNAME="$(hostname -s)"
 
 case "$HOSTNAME" in
-    *work*)
+    "m-n669nvjhw7")
         TAGS="work"
+        ;;
+    "Lijuns-Mac-Studio"|"Lijuns-Mac-Mini")
+        TAGS="personal"
         ;;
     *)
         TAGS="personal"
