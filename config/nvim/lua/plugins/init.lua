@@ -116,49 +116,36 @@ return {
     },
 
     -- ========================================================================
-    -- Mason (LSP/Tool Installer)
+    -- Mason & LSP (loaded together)
     -- ========================================================================
 
     {
         "williamboman/mason.nvim",
         lazy = false,
-        priority = 900,
+        priority = 1000,
         build = ":MasonUpdate",
-        config = function()
-            require("mason").setup({
-                ui = {
-                    border = "rounded",
-                    icons = {
-                        package_installed = "✓",
-                        package_pending = "➜",
-                        package_uninstalled = "✗",
-                    },
-                },
-            })
-        end,
     },
 
     {
         "williamboman/mason-lspconfig.nvim",
         lazy = false,
-        priority = 800,
+        priority = 999,
         dependencies = {
             "williamboman/mason.nvim",
-            "neovim/nvim-lspconfig",
         },
-        config = function()
-            require("plugins.lsp")
-        end,
     },
-
-    -- ========================================================================
-    -- LSP Configuration
-    -- ========================================================================
 
     {
         "neovim/nvim-lspconfig",
         lazy = false,
-        priority = 700,
+        priority = 998,
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+        },
+        config = function()
+            require("plugins.lsp")
+        end,
     },
 
     -- ========================================================================

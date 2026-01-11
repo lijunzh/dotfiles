@@ -2,9 +2,6 @@
 -- LSP Configuration
 -- ============================================================================
 
-local lspconfig = require("lspconfig")
-local mason_lspconfig = require("mason-lspconfig")
-
 -- ============================================================================
 -- Diagnostic Configuration
 -- ============================================================================
@@ -77,71 +74,165 @@ if ok then
 end
 
 -- ============================================================================
--- Server Configurations
+-- Setup Mason and Mason-LSPConfig
 -- ============================================================================
 
-local server_configs = {
-    -- Lua
-    lua_ls = {
-        settings = {
-            Lua = {
-                diagnostics = {
-                    globals = { "vim" },
-                },
-                workspace = {
-                    library = vim.api.nvim_get_runtime_file("", true),
-                    checkThirdParty = false,
-                },
-                telemetry = { enable = false },
-            },
+require("mason").setup({
+    ui = {
+        border = "rounded",
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
         },
     },
+})
 
-    -- Rust
-    rust_analyzer = {
-        settings = {
-            ["rust-analyzer"] = {
-                check = { command = "clippy" },
-                cargo = { allFeatures = true },
-            },
-        },
+require("mason-lspconfig").setup({
+    ensure_installed = {
+        "lua_ls",
+        "rust_analyzer",
+        "ruff",
+        "bashls",
+        "taplo",
+        "texlab",
+        "yamlls",
+        "jsonls",
+        "clangd",
     },
-
-    -- Python
-    ruff = {},
-
-    -- Shell
-    bashls = {},
-
-    -- TOML
-    taplo = {},
-
-    -- LaTeX
-    texlab = {},
-
-    -- YAML
-    yamlls = {},
-
-    -- JSON
-    jsonls = {},
-
-    -- C/C++
-    clangd = {},
-}
-
--- ============================================================================
--- Mason LSP Setup
--- ============================================================================
-
--- First setup mason-lspconfig
-mason_lspconfig.setup({
-    ensure_installed = vim.tbl_keys(server_configs),
     automatic_installation = true,
 })
 
--- Then setup each server
-for server_name, config in pairs(server_configs) do
-    config.on_attach = on_attach
-    config.capabilities = capabilities
-    lspconfig[server_name].setup(config)
-end
+-- ============================================================================
+-- LSP Server Configurations
+-- ============================================================================
+
+-- Lua
+vim.lsp.config("lua_ls", {
+    default_config = {
+        cmd = { "lua-language-server" },
+        filetypes = { "lua" },
+        root_markers = { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git" },
+    },
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { "vim" },
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false,
+            },
+            telemetry = { enable = false },
+        },
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+-- Rust
+vim.lsp.config("rust_analyzer", {
+    default_config = {
+        cmd = { "rust-analyzer" },
+        filetypes = { "rust" },
+        root_markers = { "Cargo.toml" },
+    },
+    settings = {
+        ["rust-analyzer"] = {
+            check = { command = "clippy" },
+            cargo = { allFeatures = true },
+        },
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+-- Python (Ruff)
+vim.lsp.config("ruff", {
+    default_config = {
+        cmd = { "ruff", "server" },
+        filetypes = { "python" },
+        root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" },
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+-- Bash
+vim.lsp.config("bashls", {
+    default_config = {
+        cmd = { "bash-language-server", "start" },
+        filetypes = { "sh", "bash" },
+        root_markers = { ".git" },
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+-- TOML
+vim.lsp.config("taplo", {
+    default_config = {
+        cmd = { "taplo", "lsp", "stdio" },
+        filetypes = { "toml" },
+        root_markers = { ".git" },
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+-- LaTeX
+vim.lsp.config("texlab", {
+    default_config = {
+        cmd = { "texlab" },
+        filetypes = { "tex", "plaintex", "bib" },
+        root_markers = { ".git" },
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+-- YAML
+vim.lsp.config("yamlls", {
+    default_config = {
+        cmd = { "yaml-language-server", "--stdio" },
+        filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
+        root_markers = { ".git" },
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+-- JSON
+vim.lsp.config("jsonls", {
+    default_config = {
+        cmd = { "vscode-json-language-server", "--stdio" },
+        filetypes = { "json", "jsonc" },
+        root_markers = { ".git" },
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+-- C/C++
+vim.lsp.config("clangd", {
+    default_config = {
+        cmd = { "clangd" },
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+        root_markers = { ".clangd", ".clang-tidy", ".clang-format", "compile_commands.json", "compile_flags.txt", "configure.ac", ".git" },
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+-- Enable all configured servers
+vim.lsp.enable({
+    "lua_ls",
+    "rust_analyzer",
+    "ruff",
+    "bashls",
+    "taplo",
+    "texlab",
+    "yamlls",
+    "jsonls",
+    "clangd",
+})
