@@ -143,6 +143,10 @@ command -v nvim >/dev/null && alias vim="nvim"
 # Utilities
 alias path='echo $PATH | tr -s ":" "\n"'
 
+# Personal Shortcuts
+alias home="cd ~/repo/dotfiles"
+alias nas="ssh admin@nas.local"
+
 # ============================================================================
 # Prompt (Starship)
 # ============================================================================

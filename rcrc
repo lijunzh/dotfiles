@@ -1,17 +1,2 @@
 EXCLUDES="README*.md LICENSE install.sh Brewfile"
 DOTFILES_DIRS="$HOME/repo/dotfiles"
-
-# Configure tags based on hostname
-HOSTNAME="$(hostname -s)"
-
-case "$HOSTNAME" in
-    "m-n669nvjhw7")
-        TAGS="work"
-        ;;
-    "Lijuns-Mac-Studio"|"Lijuns-Mac-Mini")
-        TAGS="personal"
-        ;;
-    *)
-        TAGS="personal"
-        ;;
-esac

@@ -1,7 +1,0 @@
-# Work Environment Variables
-export WORK_DIR="$HOME/work"
-export GOPRIVATE="github.com/my-company/*"
-
-# Work Aliases
-alias w="cd $WORK_DIR"
-alias vpn="sudo openconnect --background --user=lijun vpn.company.com"

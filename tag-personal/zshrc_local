@@ -1,6 +1,0 @@
-# Personal Environment Variables
-export HOME_MAC="mac-studio"
-
-# Personal Aliases
-alias home="cd ~/repo/dotfiles"
-alias nas="ssh admin@nas.local"
