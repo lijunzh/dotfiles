@@ -147,8 +147,6 @@ return {
             "williamboman/mason-lspconfig.nvim",
         },
         config = function()
-            local lspconfig = require("lspconfig")
-
             -- Diagnostic configuration
             vim.diagnostic.config({
                 virtual_text = { prefix = "●", spacing = 4 },
@@ -166,62 +164,60 @@ return {
                 vim.fn.sign_define(hl, { text = icon, texthl = hl })
             end
 
-            -- LSP keymaps on attach
-            local on_attach = function(_, bufnr)
-                local map = function(mode, lhs, rhs, desc)
-                    vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
-                end
-                map("n", "gd", vim.lsp.buf.definition, "Go to definition")
-                map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-                map("n", "gr", vim.lsp.buf.references, "Go to references")
-                map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
-                map("n", "K", vim.lsp.buf.hover, "Hover documentation")
-                map("n", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
-                map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
-                map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
-                map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")
-            end
+            -- LSP keymaps via LspAttach autocmd (Neovim 0.11+ native approach)
+            vim.api.nvim_create_autocmd("LspAttach", {
+                group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+                callback = function(ev)
+                    local bufnr = ev.buf
+                    local map = function(mode, lhs, rhs, desc)
+                        vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+                    end
+                    map("n", "gd", vim.lsp.buf.definition, "Go to definition")
+                    map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+                    map("n", "gr", vim.lsp.buf.references, "Go to references")
+                    map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
+                    map("n", "K", vim.lsp.buf.hover, "Hover documentation")
+                    map("n", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
+                    map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
+                    map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
+                    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")
+                end,
+            })
 
-            -- Capabilities
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-            -- Server configurations (simplified with loop)
-            local servers = {
-                lua_ls = {
-                    settings = {
-                        Lua = {
-                            diagnostics = { globals = { "vim" } },
-                            workspace = {
-                                library = vim.api.nvim_get_runtime_file("", true),
-                                checkThirdParty = false,
-                            },
-                            telemetry = { enable = false },
+            -- Server configurations using vim.lsp.config (Neovim 0.11+ native API)
+            vim.lsp.config("lua_ls", {
+                settings = {
+                    Lua = {
+                        diagnostics = { globals = { "vim" } },
+                        workspace = {
+                            library = vim.api.nvim_get_runtime_file("", true),
+                            checkThirdParty = false,
                         },
+                        telemetry = { enable = false },
                     },
                 },
-                rust_analyzer = {
-                    settings = {
-                        ["rust-analyzer"] = {
-                            check = { command = "clippy" },
-                            cargo = { allFeatures = true },
-                        },
+            })
+
+            vim.lsp.config("rust_analyzer", {
+                settings = {
+                    ["rust-analyzer"] = {
+                        check = { command = "clippy" },
+                        cargo = { allFeatures = true },
                     },
                 },
-                ruff = {},
-                bashls = {},
-                taplo = {},
-                texlab = {},
-                yamlls = {},
-                jsonls = {},
-                clangd = {},
-            }
+            })
 
-            -- Setup all servers with loop
-            for server, config in pairs(servers) do
-                config.on_attach = on_attach
-                config.capabilities = capabilities
-                lspconfig[server].setup(config)
+            -- Simple servers with default config
+            local simple_servers = { "ruff", "bashls", "taplo", "texlab", "yamlls", "jsonls", "clangd" }
+            for _, server in ipairs(simple_servers) do
+                vim.lsp.config(server, {})
             end
+
+            -- Enable all configured servers
+            vim.lsp.enable({
+                "lua_ls", "rust_analyzer", "ruff", "bashls",
+                "taplo", "texlab", "yamlls", "jsonls", "clangd",
+            })
         end,
     },
 
