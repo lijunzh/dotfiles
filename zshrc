@@ -99,6 +99,9 @@ PATH="/usr/local/sbin:$PATH"
 # mkdir .git/safe in the root of repositories you trust
 PATH=".git/safe/../../bin:$PATH"
 
+# LM Studio
+PATH="$HOME/.cache/lm-studio/bin:$PATH"
+
 export -U PATH
 
 # ============================================================================
