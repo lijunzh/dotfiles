@@ -70,10 +70,12 @@ Then open Neovim and run:
 :Lazy sync
 ```
 
-Mason will automatically install LSP servers on first use. To manually install:
+Core LSP servers (lua_ls, rust_analyzer, ruff, taplo, texlab, clangd) will be installed automatically.
+For optional servers (bashls, yamlls, jsonls), install manually:
 ```vim
 :Mason
 ```
+Then search and install the desired language servers.
 
 ## Key Configurations
 
@@ -93,7 +95,8 @@ config/nvim/
 ```
 
 **Key features:**
-- **LSP**: rust_analyzer (clippy), lua_ls, ruff, bashls, taplo, texlab, yamlls, jsonls, clangd
+- **LSP**: rust_analyzer (clippy), lua_ls, ruff, taplo, texlab, clangd
+- **Optional LSP** (install via `:Mason`): bashls, yamlls, jsonls
 - **Formatting**: stylua, ruff_format, rustfmt, shfmt, deno_fmt, yamlfmt, prettier
 - **Keybindings**: `<leader>ff` find files, `<leader>fg` grep, `<leader>fm` format, `gd` go to definition
 

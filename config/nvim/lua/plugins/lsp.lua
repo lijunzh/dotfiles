@@ -93,14 +93,13 @@ require("mason-lspconfig").setup({
         "lua_ls",
         "rust_analyzer",
         "ruff",
-        "bashls",
         "taplo",
         "texlab",
-        "yamlls",
-        "jsonls",
         "clangd",
     },
-    automatic_installation = true,
+    -- Optional servers (install manually via :Mason if needed):
+    -- bashls, yamlls, jsonls
+    automatic_installation = false,
 })
 
 -- ============================================================================
